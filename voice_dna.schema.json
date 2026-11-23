@@ -1,0 +1,2442 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://voiceauthority.engine/schemas/voice-dna-v3.0.schema.json",
+  "title": "AsyncVoiceToAuthorityDNASchemaV3_0",
+  "description": "High-Assurance Forensic Voice DNA Specification v3.0.0: adversarial Unicode/homoglyph/steganography defense, HMAC coreference-preserving PII scrubbing, Burrows Cosine Delta forensic idiolect attribution, MATTR/entropy/nominalization telemetry, Patch H epistemic fact-grounding, syntactic anti-AI grammar gates, cryptographic SHA-256 provenance hash-chaining, and regulatory compliance attestation.",
+  "type": "object",
+  "additionalProperties": false,
+  "$defs": {
+    "UtcDateTime": {
+      "type": "string",
+      "format": "date-time",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$",
+      "description": "Strict ISO-8601 UTC timestamp with Z suffix."
+    },
+    "Bcp47Locale": {
+      "type": "string",
+      "pattern": "^[a-zA-Z]{2,3}(-[a-zA-Z0-9]{2,8})*$",
+      "description": "BCP-47 language/region tag (e.g., en-US, en-GB, de-DE)."
+    },
+    "Sha256Hex": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$",
+      "description": "Lowercase 64-character SHA-256 hex digest."
+    }
+  },
+  "required": [
+    "schema_version",
+    "profile_metadata",
+    "privacy_and_data_governance",
+    "async_voice_ingestion_profile",
+    "executive_persona",
+    "forensic_idiolect_signature",
+    "stylometric_targets",
+    "lexical_fingerprint",
+    "rhetorical_architecture",
+    "worldview_and_authority",
+    "icp_and_conversion_mechanics",
+    "compliance_and_risk_guardrails",
+    "channel_profiles",
+    "few_shot_calibration",
+    "learned_revision_ledger",
+    "version_history"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "3.0.0",
+      "description": "Semantic version of the High-Assurance Forensic Async Voice-to-Authority DNA specification."
+    },
+    "profile_metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "client_id",
+        "pseudonym_token",
+        "full_name",
+        "role_title",
+        "company_name",
+        "niche_vertical",
+        "created_at_utc",
+        "updated_at_utc",
+        "calibration_confidence",
+        "source_corpus_stats"
+      ],
+      "properties": {
+        "client_id": {
+          "type": "string",
+          "pattern": "^cli_[a-z0-9_]{4,32}$"
+        },
+        "pseudonym_token": {
+          "type": "string",
+          "pattern": "^EXEC_[A-Z0-9]{4,12}$",
+          "description": "Privacy-safe alias injected into third-party LLM prompts when PSEUDONYMIZED_PAYLOAD_ONLY mode is enabled."
+        },
+        "full_name": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 100
+        },
+        "role_title": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 120
+        },
+        "company_name": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 120
+        },
+        "niche_vertical": {
+          "type": "string",
+          "enum": [
+            "FRACTIONAL_CFO",
+            "B2B_AGENCY_FOUNDER",
+            "INDEPENDENT_RIA",
+            "B2B_SAAS_FOUNDER",
+            "EXECUTIVE_ADVISOR",
+            "PE_OPERATING_PARTNER",
+            "CYBERSECURITY_CISO_ADVISOR",
+            "HEALTHCARE_BIOTECH_EXEC",
+            "LEGAL_MANAGING_PARTNER",
+            "PUBLIC_SECTOR_NATIONAL_SECURITY_EXEC"
+          ]
+        },
+        "locale": {
+          "$ref": "#/$defs/Bcp47Locale"
+        },
+        "timezone_iana": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 64
+        },
+        "cadence": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "posts_per_week_target",
+            "preferred_publish_window_local"
+          ],
+          "properties": {
+            "posts_per_week_target": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 14
+            },
+            "preferred_publish_window_local": {
+              "type": "string",
+              "pattern": "^\\d{2}:\\d{2}-\\d{2}:\\d{2}$"
+            }
+          }
+        },
+        "created_at_utc": {
+          "$ref": "#/$defs/UtcDateTime"
+        },
+        "updated_at_utc": {
+          "$ref": "#/$defs/UtcDateTime"
+        },
+        "calibration_confidence": {
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 1.0
+        },
+        "source_corpus_stats": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "spoken_words_analyzed",
+            "written_words_analyzed",
+            "voice_note_clips_analyzed",
+            "written_samples_analyzed",
+            "stylometric_drift_score"
+          ],
+          "properties": {
+            "spoken_words_analyzed": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "written_words_analyzed": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "voice_note_clips_analyzed": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "written_samples_analyzed": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "stylometric_drift_score": {
+              "type": "number",
+              "minimum": 0.0,
+              "maximum": 1.0,
+              "description": "Rolling stylometric divergence between recent approved edits and baseline DNA (> 0.35 triggers recalibration)."
+            }
+          },
+          "allOf": [
+            {
+              "if": {
+                "required": ["voice_note_clips_analyzed"],
+                "properties": {
+                  "voice_note_clips_analyzed": {
+                    "minimum": 1
+                  }
+                }
+              },
+              "then": {
+                "required": ["spoken_words_analyzed"],
+                "properties": {
+                  "spoken_words_analyzed": {
+                    "minimum": 25
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "privacy_and_data_governance": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Cryptographic, biometric, adversarial-hardening, and PII-sanitization controls.",
+      "required": [
+        "audio_biometric_retention_policy",
+        "llm_inference_privacy_mode",
+        "pre_inference_pii_scrubber",
+        "security_and_adversarial_hardening",
+        "voice_cloning_prohibition"
+      ],
+      "properties": {
+        "audio_biometric_retention_policy": {
+          "type": "string",
+          "enum": [
+            "ZERO_RETENTION_PURGE_IMMEDIATELY_POST_ASR",
+            "ENCRYPTED_EPHEMERAL_24H_TTL",
+            "CLIENT_KEY_ENCRYPTED_ARCHIVE"
+          ]
+        },
+        "llm_inference_privacy_mode": {
+          "type": "string",
+          "enum": [
+            "ZERO_DATA_RETENTION_ENTERPRISE_API",
+            "PSEUDONYMIZED_PAYLOAD_ONLY",
+            "ISOLATED_VPC_OPEN_WEIGHTS"
+          ]
+        },
+        "pre_inference_pii_scrubber": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "enabled",
+            "redact_entity_categories",
+            "token_replacement_format",
+            "custom_confidential_codenames"
+          ],
+          "properties": {
+            "enabled": {
+              "type": "boolean"
+            },
+            "redact_entity_categories": {
+              "type": "array",
+              "uniqueItems": true,
+              "minItems": 1,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "CLIENT_PROPER_NAMES",
+                  "COMPANY_COUNTERPARTIES",
+                  "EXACT_BANK_AND_CAP_TABLE_FIGURES",
+                  "EMAILS_AND_PHONE_NUMBERS",
+                  "GEOGRAPHIC_STREET_ADDRESSES",
+                  "UNANNOUNCED_DEAL_TICKERS"
+                ]
+              }
+            },
+            "token_replacement_format": {
+              "type": "string",
+              "enum": [
+                "INDEXED_BRACKET_TOKENS_E_G_CLIENT_A",
+                "HMAC_DETERMINISTIC_COREFERENCE_TOKENS",
+                "SYNTHETIC_EQUIVALENT_ENTITIES"
+              ]
+            },
+            "custom_confidential_codenames": {
+              "type": "array",
+              "maxItems": 100,
+              "items": {
+                "type": "string",
+                "minLength": 2,
+                "maxLength": 80
+              }
+            }
+          }
+        },
+        "security_and_adversarial_hardening": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "Stage-0 defense against zero-width AI watermarks/steganography, Cyrillic/Greek homoglyph evasion, Bidi overrides, and indirect prompt injection.",
+          "required": [
+            "strip_zero_width_and_steganography",
+            "block_unicode_homoglyph_spoofing",
+            "prompt_injection_firewall_mode",
+            "hmac_coreference_pseudonymization"
+          ],
+          "properties": {
+            "strip_zero_width_and_steganography": {
+              "type": "boolean",
+              "const": true
+            },
+            "block_unicode_homoglyph_spoofing": {
+              "type": "boolean",
+              "const": true
+            },
+            "prompt_injection_firewall_mode": {
+              "type": "string",
+              "enum": [
+                "QUARANTINE_AND_HALT",
+                "STRIP_AND_LOG_EVENT"
+              ]
+            },
+            "hmac_coreference_pseudonymization": {
+              "type": "boolean",
+              "description": "Uses ephemeral HMAC-SHA256 keys so identical redacted entities share a deterministic pseudonym across clips without storing plaintext maps."
+            }
+          }
+        },
+        "voice_cloning_prohibition": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "allow_synthetic_tts_training",
+            "strip_acoustic_biometric_headers"
+          ],
+          "properties": {
+            "allow_synthetic_tts_training": {
+              "type": "boolean",
+              "const": false
+            },
+            "strip_acoustic_biometric_headers": {
+              "type": "boolean",
+              "const": true
+            }
+          }
+        }
+      }
+    },
+    "async_voice_ingestion_profile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "preferred_capture_channels",
+        "consent_and_provenance",
+        "speaking_behavior",
+        "oral_to_print_bridge",
+        "in_audio_meta_directives",
+        "asr_phonetic_correction_map"
+      ],
+      "properties": {
+        "preferred_capture_channels": {
+          "type": "array",
+          "uniqueItems": true,
+          "minItems": 1,
+          "maxItems": 8,
+          "items": {
+            "type": "string",
+            "enum": [
+              "WHATSAPP_VOICE_NOTE",
+              "SIGNAL_DISAPPEARING_VOICE_NOTE",
+              "TALLY_ASYNC_AUDIO",
+              "APPLE_VOICE_MEMO",
+              "TELEGRAM_VOICE",
+              "LOOM_AUDIO_ONLY",
+              "RIVERSIDE_ASYNC_CLIP",
+              "WEB_MIC"
+            ]
+          }
+        },
+        "consent_and_provenance": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "capture_source_platform",
+            "consent_captured_at_utc",
+            "consent_reference_id",
+            "consent_scope",
+            "data_owner_email_hash"
+          ],
+          "properties": {
+            "capture_source_platform": {
+              "type": "string",
+              "enum": [
+                "WHATSAPP",
+                "SIGNAL",
+                "TELEGRAM",
+                "LOOM",
+                "TALLY_WEB_MIC",
+                "VOICE_MEMO_IOS",
+                "VOICE_MEMO_ANDROID",
+                "UPLOADED_AUDIO",
+                "OTHER"
+              ]
+            },
+            "consent_captured_at_utc": {
+              "$ref": "#/$defs/UtcDateTime"
+            },
+            "consent_reference_id": {
+              "type": "string",
+              "minLength": 3,
+              "maxLength": 128
+            },
+            "consent_scope": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "TRAINING",
+                  "DRAFTING",
+                  "PUBLISHING",
+                  "ANALYTICS",
+                  "THIRD_PARTY_LLM"
+                ]
+              }
+            },
+            "data_owner_email_hash": {
+              "$ref": "#/$defs/Sha256Hex"
+            }
+          }
+        },
+        "speaking_behavior": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "typical_clip_duration_sec",
+            "spoken_wpm_baseline",
+            "acoustic_environment_profile",
+            "pause_segmentation_threshold_ms",
+            "ramble_to_signal_curve",
+            "warm_up_lead_in_sec"
+          ],
+          "properties": {
+            "typical_clip_duration_sec": {
+              "type": "integer",
+              "minimum": 20,
+              "maximum": 1800
+            },
+            "spoken_wpm_baseline": {
+              "type": "integer",
+              "minimum": 95,
+              "maximum": 230
+            },
+            "spoken_wpm_percentiles": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "p10",
+                "p50",
+                "p90"
+              ],
+              "properties": {
+                "p10": {
+                  "type": "integer",
+                  "minimum": 60,
+                  "maximum": 260
+                },
+                "p50": {
+                  "type": "integer",
+                  "minimum": 60,
+                  "maximum": 260
+                },
+                "p90": {
+                  "type": "integer",
+                  "minimum": 60,
+                  "maximum": 300
+                }
+              }
+            },
+            "acoustic_environment_profile": {
+              "type": "string",
+              "enum": [
+                "QUIET_DESK_CONDENSER",
+                "MOBILE_WALKING_WIND_NOISE",
+                "CAR_BLUETOOTH_HANDSFREE",
+                "AIRPORT_OR_CAFE_HIGH_CHATTER"
+              ]
+            },
+            "noise_environment": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "typical_background": {
+                  "type": "string",
+                  "enum": [
+                    "QUIET_OFFICE",
+                    "COMMUTE_CAR",
+                    "WALKING_OUTDOORS",
+                    "CAFE_COWORKING",
+                    "MIXED"
+                  ]
+                },
+                "asr_confidence_penalty": {
+                  "type": "number",
+                  "minimum": 0.0,
+                  "maximum": 1.0
+                }
+              }
+            },
+            "pause_segmentation_threshold_ms": {
+              "type": "integer",
+              "minimum": 400,
+              "maximum": 3000
+            },
+            "ramble_to_signal_curve": {
+              "type": "string",
+              "enum": [
+                "FRONT_LOADED_DIRECT",
+                "WARMS_UP_LANDS_GOLD_IN_FINAL_THIRD",
+                "STORY_TANGENT_THEN_SHARP_LESSON",
+                "MULTI_BURST_STREAM_OF_CONSCIOUSNESS"
+              ]
+            },
+            "warm_up_lead_in_sec": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 120
+            }
+          }
+        },
+        "oral_to_print_bridge": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "strip_spoken_disfluencies",
+            "preserve_signature_oral_markers",
+            "breath_chain_segmentation_rule",
+            "vocal_stress_to_typography_rule",
+            "incomplete_thought_resolution_policy",
+            "multi_note_stitching_policy",
+            "target_compression_ratio"
+          ],
+          "properties": {
+            "strip_spoken_disfluencies": {
+              "type": "array",
+              "minItems": 4,
+              "maxItems": 40,
+              "items": {
+                "type": "string",
+                "minLength": 2,
+                "maxLength": 80
+              }
+            },
+            "preserve_signature_oral_markers": {
+              "type": "array",
+              "minItems": 3,
+              "maxItems": 20,
+              "items": {
+                "type": "string",
+                "minLength": 2,
+                "maxLength": 90
+              }
+            },
+            "breath_chain_segmentation_rule": {
+              "type": "string",
+              "minLength": 25,
+              "maxLength": 300
+            },
+            "vocal_stress_to_typography_rule": {
+              "type": "string",
+              "minLength": 25,
+              "maxLength": 280
+            },
+            "incomplete_thought_resolution_policy": {
+              "type": "string",
+              "enum": [
+                "ANCHOR_TO_CORE_THESIS_WITHOUT_NEW_FACTS",
+                "PRUNE_UNFINISHED_TANGENT_CLEANLY",
+                "INSERT_BRACKETED_QUERY_FOR_AUTHOR"
+              ]
+            },
+            "multi_note_stitching_policy": {
+              "type": "string",
+              "enum": [
+                "CHRONOLOGICAL_CONCATENATION",
+                "LATE_ADDENDUM_OVERRIDES_EARLIER_DRAFT",
+                "SYNTHESIZE_BY_ARGUMENT_ARC"
+              ]
+            },
+            "target_compression_ratio": {
+              "type": "number",
+              "minimum": 0.15,
+              "maximum": 0.80
+            }
+          }
+        },
+        "in_audio_meta_directives": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "off_record_redaction_triggers",
+            "self_correction_triggers",
+            "editor_instruction_triggers",
+            "quarantine_policy"
+          ],
+          "properties": {
+            "off_record_redaction_triggers": {
+              "type": "array",
+              "minItems": 3,
+              "maxItems": 25,
+              "items": {
+                "type": "string",
+                "minLength": 3,
+                "maxLength": 80
+              }
+            },
+            "self_correction_triggers": {
+              "type": "array",
+              "minItems": 3,
+              "maxItems": 25,
+              "items": {
+                "type": "string",
+                "minLength": 3,
+                "maxLength": 80
+              }
+            },
+            "editor_instruction_triggers": {
+              "type": "array",
+              "minItems": 2,
+              "maxItems": 25,
+              "items": {
+                "type": "string",
+                "minLength": 3,
+                "maxLength": 80
+              }
+            },
+            "quarantine_policy": {
+              "type": "string",
+              "enum": [
+                "REDACT_SPAN_AND_LOG_FOR_EDITOR",
+                "DROP_ENTIRE_SENTENCE_SILENTLY",
+                "HALT_PIPELINE_FOR_MANUAL_REVIEW"
+              ]
+            }
+          }
+        },
+        "asr_phonetic_correction_map": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 75,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "misheard_variants",
+              "canonical_term",
+              "match_strategy",
+              "domain_context"
+            ],
+            "properties": {
+              "misheard_variants": {
+                "type": "array",
+                "minItems": 1,
+                "maxItems": 10,
+                "items": {
+                  "type": "string",
+                  "minLength": 2,
+                  "maxLength": 80
+                }
+              },
+              "canonical_term": {
+                "type": "string",
+                "minLength": 2,
+                "maxLength": 80
+              },
+              "match_strategy": {
+                "type": "string",
+                "enum": [
+                  "EXACT_WORD_BOUNDARY_CASE_INSENSITIVE",
+                  "CONTEXTUAL_DOMAIN_DISAMBIGUATION",
+                  "PHONETIC_STEM_REPLACEMENT"
+                ]
+              },
+              "domain_context": {
+                "type": "string",
+                "minLength": 4,
+                "maxLength": 140
+              }
+            }
+          }
+        }
+      }
+    },
+    "executive_persona": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "archetype_label",
+        "voice_essence_summary",
+        "status_posture",
+        "tone_coordinates",
+        "pov_pronoun_policy"
+      ],
+      "properties": {
+        "archetype_label": {
+          "type": "string",
+          "minLength": 5,
+          "maxLength": 100
+        },
+        "voice_essence_summary": {
+          "type": "string",
+          "minLength": 40,
+          "maxLength": 420
+        },
+        "status_posture": {
+          "type": "string",
+          "enum": [
+            "PEER_OPERATOR",
+            "BATTLE_TESTED_ADVISOR",
+            "QUIET_FIDUCIARY",
+            "CONTRARIAN_BUILDER",
+            "CLINICAL_DIAGNOSTICIAN"
+          ]
+        },
+        "tone_coordinates": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "directness_vs_diplomacy",
+            "analytical_vs_narrative",
+            "contrarian_edge",
+            "warmth_and_wit",
+            "technical_rigor"
+          ],
+          "properties": {
+            "directness_vs_diplomacy": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 10
+            },
+            "analytical_vs_narrative": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 10
+            },
+            "contrarian_edge": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 10
+            },
+            "warmth_and_wit": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 10
+            },
+            "technical_rigor": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 10
+            }
+          }
+        },
+        "pov_pronoun_policy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "default_person",
+            "reader_address",
+            "notes"
+          ],
+          "properties": {
+            "default_person": {
+              "type": "string",
+              "enum": [
+                "FIRST_PERSON_SINGULAR_I",
+                "FIRST_PERSON_PLURAL_WE",
+                "MIXED_I_FOR_OPINION_WE_FOR_FIRM"
+              ]
+            },
+            "reader_address": {
+              "type": "string",
+              "enum": [
+                "DIRECT_SECOND_PERSON_YOU",
+                "THIRD_PERSON_PEER_FOUNDERS",
+                "MIXED_YOU_AND_PEERS"
+              ]
+            },
+            "notes": {
+              "type": "string",
+              "minLength": 10,
+              "maxLength": 240
+            }
+          }
+        }
+      }
+    },
+    "forensic_idiolect_signature": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Topic-invariant computational forensic linguistics vector (Burrows Cosine Delta over function words, MATTR-40 lexical diversity, nominalization cap, and passive-voice ceiling) for authorship verification.",
+      "required": [
+        "calibration_method",
+        "function_word_centroid_per_1k",
+        "mattr_window_40_bounds",
+        "max_nominalization_density_pct",
+        "max_passive_voice_ratio",
+        "min_authorship_attribution_score"
+      ],
+      "properties": {
+        "calibration_method": {
+          "type": "string",
+          "enum": [
+            "BURROWS_COSINE_DELTA_V1",
+            "EMPIRICAL_CORPUS_CENTROID_V1"
+          ]
+        },
+        "function_word_centroid_per_1k": {
+          "type": "object",
+          "description": "Normalized per-1,000-word frequencies for 26 topic-invariant English function words.",
+          "additionalProperties": false,
+          "required": [
+            "the", "of", "and", "to", "in", "a", "that", "for", "is", "with",
+            "on", "by", "from", "not", "but", "this", "are", "as", "be", "at",
+            "or", "if", "when", "we", "you", "i"
+          ],
+          "properties": {
+            "the": { "type": "number", "minimum": 0.0, "maximum": 150.0 },
+            "of": { "type": "number", "minimum": 0.0, "maximum": 100.0 },
+            "and": { "type": "number", "minimum": 0.0, "maximum": 100.0 },
+            "to": { "type": "number", "minimum": 0.0, "maximum": 100.0 },
+            "in": { "type": "number", "minimum": 0.0, "maximum": 80.0 },
+            "a": { "type": "number", "minimum": 0.0, "maximum": 90.0 },
+            "that": { "type": "number", "minimum": 0.0, "maximum": 60.0 },
+            "for": { "type": "number", "minimum": 0.0, "maximum": 60.0 },
+            "is": { "type": "number", "minimum": 0.0, "maximum": 60.0 },
+            "with": { "type": "number", "minimum": 0.0, "maximum": 50.0 },
+            "on": { "type": "number", "minimum": 0.0, "maximum": 50.0 },
+            "by": { "type": "number", "minimum": 0.0, "maximum": 40.0 },
+            "from": { "type": "number", "minimum": 0.0, "maximum": 40.0 },
+            "not": { "type": "number", "minimum": 0.0, "maximum": 40.0 },
+            "but": { "type": "number", "minimum": 0.0, "maximum": 40.0 },
+            "this": { "type": "number", "minimum": 0.0, "maximum": 40.0 },
+            "are": { "type": "number", "minimum": 0.0, "maximum": 40.0 },
+            "as": { "type": "number", "minimum": 0.0, "maximum": 40.0 },
+            "be": { "type": "number", "minimum": 0.0, "maximum": 40.0 },
+            "at": { "type": "number", "minimum": 0.0, "maximum": 40.0 },
+            "or": { "type": "number", "minimum": 0.0, "maximum": 40.0 },
+            "if": { "type": "number", "minimum": 0.0, "maximum": 40.0 },
+            "when": { "type": "number", "minimum": 0.0, "maximum": 40.0 },
+            "we": { "type": "number", "minimum": 0.0, "maximum": 60.0 },
+            "you": { "type": "number", "minimum": 0.0, "maximum": 70.0 },
+            "i": { "type": "number", "minimum": 0.0, "maximum": 60.0 }
+          }
+        },
+        "mattr_window_40_bounds": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "min_mattr",
+            "max_mattr"
+          ],
+          "properties": {
+            "min_mattr": {
+              "type": "number",
+              "minimum": 0.55,
+              "maximum": 0.92
+            },
+            "max_mattr": {
+              "type": "number",
+              "minimum": 0.65,
+              "maximum": 0.99
+            }
+          }
+        },
+        "max_nominalization_density_pct": {
+          "type": "number",
+          "minimum": 1.5,
+          "maximum": 14.0,
+          "description": "Caps bureaucratic '-tion/-ment/-ness/-ity' abstract noun inflation common in synthetic prose."
+        },
+        "max_passive_voice_ratio": {
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 0.45,
+          "description": "Maximum allowed ratio of passive-voice sentences per draft."
+        },
+        "min_authorship_attribution_score": {
+          "type": "number",
+          "minimum": 55.0,
+          "maximum": 98.0,
+          "description": "Minimum composite Burrows Cosine Delta + cadence attribution score (0-100) required to pass forensic authorship verification."
+        }
+      }
+    },
+    "stylometric_targets": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "word_count_method",
+        "sentence_length",
+        "paragraph_and_whitespace",
+        "orthography_and_punctuation",
+        "syntactic_anti_ai_constraints"
+      ],
+      "properties": {
+        "word_count_method": {
+          "type": "string",
+          "enum": [
+            "WHITESPACE_SPLIT",
+            "UNICODE_WORD_BOUNDARIES"
+          ]
+        },
+        "readability_target": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "flesch_kincaid_grade_min",
+            "flesch_kincaid_grade_max"
+          ],
+          "properties": {
+            "flesch_kincaid_grade_min": {
+              "type": "number",
+              "minimum": 3.0,
+              "maximum": 18.0
+            },
+            "flesch_kincaid_grade_max": {
+              "type": "number",
+              "minimum": 4.0,
+              "maximum": 20.0
+            },
+            "avg_silent_reading_wpm": {
+              "type": "integer",
+              "minimum": 150,
+              "maximum": 350
+            },
+            "preferred_narrative_density": {
+              "type": "string",
+              "enum": [
+                "SKIMMABLE",
+                "BALANCED",
+                "DENSE_ANALYTICAL"
+              ]
+            }
+          }
+        },
+        "sentence_length": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "target_mean_words",
+            "allowed_mean_tolerance",
+            "min_burstiness_cv",
+            "short_punch_sentence_ratio",
+            "hard_max_words_single_sentence"
+          ],
+          "properties": {
+            "target_mean_words": {
+              "type": "number",
+              "minimum": 7.0,
+              "maximum": 24.0
+            },
+            "allowed_mean_tolerance": {
+              "type": "number",
+              "minimum": 1.5,
+              "maximum": 6.0
+            },
+            "min_burstiness_cv": {
+              "type": "number",
+              "minimum": 0.30,
+              "maximum": 0.95
+            },
+            "short_punch_sentence_ratio": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "min_ratio",
+                "max_ratio"
+              ],
+              "properties": {
+                "min_ratio": {
+                  "type": "number",
+                  "minimum": 0.05,
+                  "maximum": 0.50
+                },
+                "max_ratio": {
+                  "type": "number",
+                  "minimum": 0.15,
+                  "maximum": 0.70
+                }
+              }
+            },
+            "hard_max_words_single_sentence": {
+              "type": "integer",
+              "minimum": 18,
+              "maximum": 42
+            }
+          }
+        },
+        "paragraph_and_whitespace": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "max_sentences_per_paragraph",
+            "single_sentence_paragraph_frequency",
+            "max_consecutive_single_line_paragraphs",
+            "bullet_list_policy",
+            "allowed_bullet_glyphs"
+          ],
+          "properties": {
+            "max_sentences_per_paragraph": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 5
+            },
+            "single_sentence_paragraph_frequency": {
+              "type": "string",
+              "enum": [
+                "SPARING_EMPHASIS_ONLY",
+                "MODERATE_CADENCE",
+                "HIGH_VELOCITY_STACCATO"
+              ]
+            },
+            "max_consecutive_single_line_paragraphs": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 4
+            },
+            "bullet_list_policy": {
+              "type": "string",
+              "enum": [
+                "NEVER",
+                "MAX_ONE_SHORT_LIST_3_TO_5_ITEMS",
+                "NUMBERED_FRAMEWORKS_PREFERRED"
+              ]
+            },
+            "allowed_bullet_glyphs": {
+              "type": "array",
+              "maxItems": 4,
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 4
+              }
+            }
+          }
+        },
+        "orthography_and_punctuation": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "em_dash_max_per_post",
+            "semicolon_policy",
+            "parenthetical_aside_policy",
+            "exclamation_mark_max_per_post",
+            "ellipsis_policy",
+            "emoji_max_per_post",
+            "allowed_emojis",
+            "hashtag_max_per_post",
+            "link_policy",
+            "hashtag_policy",
+            "number_rendering_rule"
+          ],
+          "properties": {
+            "em_dash_max_per_post": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 5
+            },
+            "semicolon_policy": {
+              "type": "string",
+              "enum": [
+                "BANNED",
+                "RARE_ANALYTICAL_CONTRAST",
+                "ALLOWED"
+              ]
+            },
+            "parenthetical_aside_policy": {
+              "type": "string",
+              "enum": [
+                "BANNED",
+                "DRY_COMMENTARY_MAX_ONE",
+                "FREQUENT_CONVERSATIONAL_ASIDES"
+              ]
+            },
+            "exclamation_mark_max_per_post": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 2
+            },
+            "ellipsis_policy": {
+              "type": "string",
+              "enum": [
+                "BANNED",
+                "RARE_PAUSE_MAX_ONE"
+              ]
+            },
+            "emoji_max_per_post": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 4
+            },
+            "allowed_emojis": {
+              "type": "array",
+              "maxItems": 6,
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 4
+              }
+            },
+            "hashtag_max_per_post": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 3
+            },
+            "link_policy": {
+              "type": "string",
+              "enum": [
+                "NO_LINKS_IN_BODY",
+                "ONE_LINK_IN_FIRST_COMMENT",
+                "INLINE_LINK_ALLOWED",
+                "NEWSLETTER_ONLY"
+              ]
+            },
+            "hashtag_policy": {
+              "type": "string",
+              "enum": [
+                "NONE",
+                "BRANDED_ONLY",
+                "NICHE_RELEVANT_MAX_3",
+                "FREEFORM"
+              ]
+            },
+            "number_rendering_rule": {
+              "type": "string",
+              "minLength": 15,
+              "maxLength": 240
+            }
+          }
+        },
+        "syntactic_anti_ai_constraints": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "max_antithesis_reversals_per_post",
+            "forbid_participial_tail_clauses",
+            "forbid_symmetrical_adjective_triplets",
+            "forbid_hypophora_question_stubs"
+          ],
+          "properties": {
+            "max_antithesis_reversals_per_post": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 2
+            },
+            "forbid_participial_tail_clauses": {
+              "type": "boolean"
+            },
+            "forbid_symmetrical_adjective_triplets": {
+              "type": "boolean"
+            },
+            "forbid_hypophora_question_stubs": {
+              "type": "boolean"
+            }
+          }
+        }
+      }
+    },
+    "lexical_fingerprint": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "signature_idioms_and_phrases",
+        "spoken_transition_bridges",
+        "domain_power_lexicon",
+        "client_hard_banned_terms",
+        "lexical_substitutions"
+      ],
+      "properties": {
+        "signature_idioms_and_phrases": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 25,
+          "items": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 120
+          }
+        },
+        "spoken_transition_bridges": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 20,
+          "items": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 90
+          }
+        },
+        "domain_power_lexicon": {
+          "type": "array",
+          "minItems": 5,
+          "maxItems": 40,
+          "items": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 80
+          }
+        },
+        "client_hard_banned_terms": {
+          "type": "array",
+          "minItems": 5,
+          "maxItems": 100,
+          "items": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 80
+          }
+        },
+        "lexical_substitutions": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 40,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "banned_term",
+              "preferred_replacement",
+              "reason"
+            ],
+            "properties": {
+              "banned_term": {
+                "type": "string",
+                "minLength": 2,
+                "maxLength": 80
+              },
+              "preferred_replacement": {
+                "type": "string",
+                "minLength": 2,
+                "maxLength": 80
+              },
+              "reason": {
+                "type": "string",
+                "minLength": 5,
+                "maxLength": 180
+              }
+            }
+          }
+        }
+      }
+    },
+    "rhetorical_architecture": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "preferred_hook_archetypes",
+        "argument_progression_pattern",
+        "evidence_anchoring_rule",
+        "closing_cadence_rule"
+      ],
+      "properties": {
+        "preferred_hook_archetypes": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 4,
+          "items": {
+            "type": "string",
+            "enum": [
+              "SPECIFIC_NUMBER_OR_FINANCIAL_ANOMALY",
+              "CONTRARIAN_DIAGNOSIS",
+              "ANONYMIZED_CLIENT_AUTOPSY",
+              "HARD_EARNED_OPERATOR_MISTAKE",
+              "SHARP_REGULATORY_OR_MARKET_SHIFT",
+              "UNCOMFORTABLE_BOARDROOM_QUESTION"
+            ]
+          }
+        },
+        "argument_progression_pattern": {
+          "type": "string",
+          "minLength": 25,
+          "maxLength": 320
+        },
+        "evidence_anchoring_rule": {
+          "type": "string",
+          "minLength": 25,
+          "maxLength": 320
+        },
+        "closing_cadence_rule": {
+          "type": "string",
+          "minLength": 20,
+          "maxLength": 280
+        }
+      }
+    },
+    "worldview_and_authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "verified_credibility_anchors",
+        "core_contrarian_theses",
+        "sacred_cows_and_nuances"
+      ],
+      "properties": {
+        "verified_credibility_anchors": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 12,
+          "items": {
+            "type": "string",
+            "minLength": 10,
+            "maxLength": 220
+          }
+        },
+        "core_contrarian_theses": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 12,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "conventional_myth",
+              "client_conviction",
+              "proof_mechanism"
+            ],
+            "properties": {
+              "conventional_myth": {
+                "type": "string",
+                "minLength": 10,
+                "maxLength": 220
+              },
+              "client_conviction": {
+                "type": "string",
+                "minLength": 10,
+                "maxLength": 260
+              },
+              "proof_mechanism": {
+                "type": "string",
+                "minLength": 10,
+                "maxLength": 260
+              }
+            }
+          }
+        },
+        "sacred_cows_and_nuances": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 12,
+          "items": {
+            "type": "string",
+            "minLength": 10,
+            "maxLength": 240
+          }
+        }
+      }
+    },
+    "icp_and_conversion_mechanics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "primary_buyer_persona",
+        "cta_philosophy"
+      ],
+      "properties": {
+        "primary_buyer_persona": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "titles",
+            "company_or_wealth_stage",
+            "acute_pains",
+            "sophistication_level"
+          ],
+          "properties": {
+            "titles": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 8,
+              "items": {
+                "type": "string",
+                "minLength": 2,
+                "maxLength": 80
+              }
+            },
+            "company_or_wealth_stage": {
+              "type": "string",
+              "minLength": 5,
+              "maxLength": 160
+            },
+            "acute_pains": {
+              "type": "array",
+              "minItems": 2,
+              "maxItems": 8,
+              "items": {
+                "type": "string",
+                "minLength": 8,
+                "maxLength": 180
+              }
+            },
+            "sophistication_level": {
+              "type": "string",
+              "enum": [
+                "HIGH_OPERATOR_NO_BASICS",
+                "SOPHISTICATED_HNW_DELEGATOR",
+                "EXECUTIVE_DECISION_MAKER"
+              ]
+            }
+          }
+        },
+        "cta_philosophy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "educational_to_offer_ratio",
+            "allowed_soft_ctas",
+            "banned_cta_patterns"
+          ],
+          "properties": {
+            "educational_to_offer_ratio": {
+              "type": "string",
+              "pattern": "^\\d{2}:\\d{2}$"
+            },
+            "allowed_soft_ctas": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 8,
+              "items": {
+                "type": "string",
+                "minLength": 10,
+                "maxLength": 200
+              }
+            },
+            "banned_cta_patterns": {
+              "type": "array",
+              "minItems": 2,
+              "maxItems": 12,
+              "items": {
+                "type": "string",
+                "minLength": 5,
+                "maxLength": 140
+              }
+            }
+          }
+        }
+      }
+    },
+    "compliance_and_risk_guardrails": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "regulatory_regime",
+        "applicable_jurisdictions",
+        "data_retention_and_residency",
+        "epistemic_fact_grounding_policy",
+        "anonymization_policy",
+        "prohibited_claims_and_promises",
+        "ai_disclosure_policy",
+        "human_review_gate",
+        "mandatory_disclaimer"
+      ],
+      "properties": {
+        "regulatory_regime": {
+          "type": "string",
+          "enum": [
+            "STANDARD_B2B",
+            "NDA_STRICT_FINANCIAL",
+            "SEC_RIA_MARKETING_RULE_206_4_1",
+            "FINRA_2210_SUPERVISED",
+            "HIPAA_COVERED_ENTITY",
+            "ABA_LEGAL_ADVERTISING_RULE_7",
+            "PUBLIC_SECTOR_HIGH_ASSURANCE"
+          ]
+        },
+        "applicable_jurisdictions": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "US_SEC",
+              "US_FINRA",
+              "US_FTC",
+              "US_FEDERAL_RECORDS",
+              "HIPAA",
+              "ABA_RULE_7",
+              "UK_FCA",
+              "EU_MIFID_II",
+              "EU_AI_ACT",
+              "GDPR",
+              "CCPA_CPRA",
+              "NON_REGULATED"
+            ]
+          }
+        },
+        "data_retention_and_residency": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "raw_audio_retention_days",
+            "transcript_retention_days",
+            "deletion_sla_hours",
+            "data_residency_region"
+          ],
+          "properties": {
+            "raw_audio_retention_days": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 3650
+            },
+            "transcript_retention_days": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 3650
+            },
+            "deletion_sla_hours": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 720
+            },
+            "data_residency_region": {
+              "type": "string",
+              "enum": [
+                "US",
+                "US_GOV_ISOLATED",
+                "EU",
+                "UK",
+                "CA",
+                "AU",
+                "CH",
+                "MULTI_REGION_UNRESTRICTED"
+              ]
+            },
+            "processor_id": {
+              "type": "string",
+              "maxLength": 120
+            },
+            "dpa_url": {
+              "type": "string",
+              "format": "uri",
+              "maxLength": 300
+            }
+          }
+        },
+        "epistemic_fact_grounding_policy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "unverified_spoken_numbers_rule",
+            "allow_extrapolated_case_studies",
+            "require_citation_marker_on_industry_stats"
+          ],
+          "properties": {
+            "unverified_spoken_numbers_rule": {
+              "type": "string",
+              "enum": [
+                "CONVERT_TO_CONSERVATIVE_ORDER_OF_MAGNITUDE",
+                "WRAP_IN_VERIFY_BRACKETS_FOR_AUTHOR",
+                "STRIP_METRIC_KEEP_DIRECTIONAL_MECHANISM"
+              ]
+            },
+            "allow_extrapolated_case_studies": {
+              "type": "boolean",
+              "const": false
+            },
+            "require_citation_marker_on_industry_stats": {
+              "type": "boolean"
+            }
+          }
+        },
+        "anonymization_policy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "redact_client_names",
+            "redact_exact_deal_terms",
+            "instructions"
+          ],
+          "properties": {
+            "redact_client_names": {
+              "type": "boolean"
+            },
+            "redact_exact_deal_terms": {
+              "type": "boolean"
+            },
+            "pii_scrub_classes": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "PERSON_NAME",
+                  "ORG_NAME",
+                  "EMAIL",
+                  "PHONE",
+                  "ACCOUNT_NUMBER",
+                  "DEAL_SIZE_EXACT",
+                  "LOCATION_SPECIFIC"
+                ]
+              }
+            },
+            "instructions": {
+              "type": "string",
+              "minLength": 15,
+              "maxLength": 300
+            }
+          }
+        },
+        "prohibited_claims_and_promises": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 30,
+          "items": {
+            "type": "string",
+            "minLength": 4,
+            "maxLength": 160
+          }
+        },
+        "ai_disclosure_policy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "required",
+            "label_text",
+            "applies_to"
+          ],
+          "properties": {
+            "required": {
+              "type": "boolean"
+            },
+            "label_text": {
+              "type": "string",
+              "minLength": 0,
+              "maxLength": 240
+            },
+            "applies_to": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "LINKEDIN_POST",
+                  "NEWSLETTER_ISSUE",
+                  "VIDEO_SCRIPT_60S",
+                  "EXECUTIVE_MEMO"
+                ]
+              }
+            }
+          }
+        },
+        "human_review_gate": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "enabled",
+            "reviewer_role",
+            "required_before_channels"
+          ],
+          "properties": {
+            "enabled": {
+              "type": "boolean"
+            },
+            "reviewer_role": {
+              "type": "string",
+              "enum": [
+                "AUTHOR",
+                "COMPLIANCE_OFFICER",
+                "LEGAL",
+                "EDITOR"
+              ]
+            },
+            "required_before_channels": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "LINKEDIN_POST",
+                  "NEWSLETTER_ISSUE",
+                  "VIDEO_SCRIPT_60S",
+                  "EXECUTIVE_MEMO"
+                ]
+              }
+            }
+          }
+        },
+        "mandatory_disclaimer": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "required",
+            "text",
+            "apply_to_channels"
+          ],
+          "properties": {
+            "required": {
+              "type": "boolean"
+            },
+            "text": {
+              "type": "string",
+              "maxLength": 500
+            },
+            "apply_to_channels": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "LINKEDIN_POST",
+                  "NEWSLETTER_ISSUE",
+                  "VIDEO_SCRIPT_60S",
+                  "EXECUTIVE_MEMO"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "channel_profiles": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "LINKEDIN_POST",
+        "NEWSLETTER_ISSUE",
+        "VIDEO_SCRIPT_60S"
+      ],
+      "properties": {
+        "LINKEDIN_POST": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "min_words",
+            "max_words",
+            "hook_max_words",
+            "mobile_see_more_char_cutoff",
+            "include_first_comment"
+          ],
+          "properties": {
+            "min_words": {
+              "type": "integer",
+              "minimum": 80,
+              "maximum": 240
+            },
+            "max_words": {
+              "type": "integer",
+              "minimum": 140,
+              "maximum": 400
+            },
+            "max_chars": {
+              "type": "integer",
+              "minimum": 300,
+              "maximum": 3000
+            },
+            "hook_max_words": {
+              "type": "integer",
+              "minimum": 8,
+              "maximum": 35
+            },
+            "mobile_see_more_char_cutoff": {
+              "type": "integer",
+              "minimum": 130,
+              "maximum": 210
+            },
+            "include_first_comment": {
+              "type": "boolean"
+            }
+          }
+        },
+        "NEWSLETTER_ISSUE": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "min_words",
+            "max_words",
+            "subject_line_max_chars",
+            "preview_text_max_chars",
+            "section_headers_allowed"
+          ],
+          "properties": {
+            "min_words": {
+              "type": "integer",
+              "minimum": 450,
+              "maximum": 950
+            },
+            "max_words": {
+              "type": "integer",
+              "minimum": 700,
+              "maximum": 1800
+            },
+            "subject_line_max_chars": {
+              "type": "integer",
+              "minimum": 30,
+              "maximum": 75
+            },
+            "preview_text_max_chars": {
+              "type": "integer",
+              "minimum": 40,
+              "maximum": 110
+            },
+            "section_headers_allowed": {
+              "type": "boolean"
+            },
+            "plaintext_alt_required": {
+              "type": "boolean"
+            }
+          }
+        },
+        "VIDEO_SCRIPT_60S": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "min_words",
+            "max_words",
+            "spoken_wpm_target",
+            "visual_cue_brackets_allowed"
+          ],
+          "properties": {
+            "min_words": {
+              "type": "integer",
+              "minimum": 95,
+              "maximum": 145
+            },
+            "max_words": {
+              "type": "integer",
+              "minimum": 135,
+              "maximum": 210
+            },
+            "spoken_wpm_target": {
+              "type": "integer",
+              "minimum": 125,
+              "maximum": 175
+            },
+            "visual_cue_brackets_allowed": {
+              "type": "boolean"
+            },
+            "captions_required": {
+              "type": "boolean"
+            }
+          }
+        },
+        "EXECUTIVE_MEMO": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "min_words",
+            "max_words",
+            "include_tl_dr_summary"
+          ],
+          "properties": {
+            "min_words": {
+              "type": "integer",
+              "minimum": 250,
+              "maximum": 600
+            },
+            "max_words": {
+              "type": "integer",
+              "minimum": 500,
+              "maximum": 1500
+            },
+            "include_tl_dr_summary": {
+              "type": "boolean"
+            }
+          }
+        }
+      }
+    },
+    "few_shot_calibration": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 8,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "topic_context",
+          "pii_sanitized_verified",
+          "raw_async_voice_transcript_snippet",
+          "generic_ai_slop_version",
+          "authentic_client_gold_version",
+          "observed_gold_metrics",
+          "forensic_transformation_notes"
+        ],
+        "properties": {
+          "topic_context": {
+            "type": "string",
+            "minLength": 8,
+            "maxLength": 160
+          },
+          "pii_sanitized_verified": {
+            "type": "boolean",
+            "const": true
+          },
+          "redaction_applied": {
+            "type": "boolean"
+          },
+          "raw_async_voice_transcript_snippet": {
+            "type": "string",
+            "minLength": 40,
+            "maxLength": 1400
+          },
+          "generic_ai_slop_version": {
+            "type": "string",
+            "minLength": 35,
+            "maxLength": 900
+          },
+          "authentic_client_gold_version": {
+            "type": "string",
+            "minLength": 35,
+            "maxLength": 1800
+          },
+          "observed_gold_metrics": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "mean_sentence_words",
+              "burstiness_cv",
+              "compression_ratio_achieved"
+            ],
+            "properties": {
+              "mean_sentence_words": {
+                "type": "number",
+                "minimum": 5.0,
+                "maximum": 30.0
+              },
+              "burstiness_cv": {
+                "type": "number",
+                "minimum": 0.20,
+                "maximum": 1.20
+              },
+              "compression_ratio_achieved": {
+                "type": "number",
+                "minimum": 0.10,
+                "maximum": 1.50
+              }
+            }
+          },
+          "forensic_transformation_notes": {
+            "type": "string",
+            "minLength": 20,
+            "maxLength": 420
+          }
+        }
+      }
+    },
+    "learned_revision_ledger": {
+      "type": "array",
+      "maxItems": 150,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "rule_id",
+          "created_at_utc",
+          "lifecycle_status",
+          "severity",
+          "scope",
+          "raw_client_feedback",
+          "compiled_agent_directive",
+          "bad_before_example",
+          "approved_after_example"
+        ],
+        "properties": {
+          "rule_id": {
+            "type": "string",
+            "pattern": "^rev_\\d{8}_[a-z0-9]{4,12}$"
+          },
+          "created_at_utc": {
+            "$ref": "#/$defs/UtcDateTime"
+          },
+          "lifecycle_status": {
+            "type": "string",
+            "enum": [
+              "ACTIVE",
+              "PROMOTED_TO_CORE_DNA",
+              "SUPERSEDED",
+              "DEPRECATED"
+            ]
+          },
+          "supersedes_rule_id": {
+            "type": "string",
+            "pattern": "^rev_\\d{8}_[a-z0-9]{4,12}$"
+          },
+          "severity": {
+            "type": "string",
+            "enum": [
+              "HARD_BLOCK",
+              "STYLE_PREFERENCE"
+            ]
+          },
+          "scope": {
+            "type": "string",
+            "enum": [
+              "ALL_CHANNELS",
+              "LINKEDIN_POST",
+              "NEWSLETTER_ISSUE",
+              "VIDEO_SCRIPT_60S",
+              "EXECUTIVE_MEMO"
+            ]
+          },
+          "raw_client_feedback": {
+            "type": "string",
+            "minLength": 5,
+            "maxLength": 400
+          },
+          "compiled_agent_directive": {
+            "type": "string",
+            "minLength": 10,
+            "maxLength": 300
+          },
+          "bad_before_example": {
+            "type": "string",
+            "minLength": 4,
+            "maxLength": 300
+          },
+          "approved_after_example": {
+            "type": "string",
+            "minLength": 4,
+            "maxLength": 300
+          },
+          "redaction_applied": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "version_history": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 200,
+      "description": "Tamper-evident SHA-256 hash-chained changelog of profile calibrations and schema migrations.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "version",
+          "changed_at_utc",
+          "change_summary",
+          "breaking_change",
+          "prev_version_hash",
+          "entry_sha256"
+        ],
+        "properties": {
+          "version": {
+            "type": "string",
+            "pattern": "^\\d+\\.\\d+\\.\\d+$"
+          },
+          "changed_at_utc": {
+            "$ref": "#/$defs/UtcDateTime"
+          },
+          "change_summary": {
+            "type": "string",
+            "minLength": 5,
+            "maxLength": 300
+          },
+          "breaking_change": {
+            "type": "boolean"
+          },
+          "prev_version_hash": {
+            "type": "string",
+            "pattern": "^(?:GENESIS|[a-f0-9]{64})$",
+            "description": "GENESIS for index 0; prior entry_sha256 for index >= 1."
+          },
+          "entry_sha256": {
+            "$ref": "#/$defs/Sha256Hex"
+          }
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "description": "Independent RIAs must enforce SEC Marketing Rule 206(4)-1 or FINRA 2210 supervision.",
+      "if": {
+        "required": ["profile_metadata"],
+        "properties": {
+          "profile_metadata": {
+            "required": ["niche_vertical"],
+            "properties": {
+              "niche_vertical": {
+                "const": "INDEPENDENT_RIA"
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "compliance_and_risk_guardrails": {
+            "properties": {
+              "regulatory_regime": {
+                "enum": [
+                  "SEC_RIA_MARKETING_RULE_206_4_1",
+                  "FINRA_2210_SUPERVISED"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "SEC/FINRA regulated profiles must require non-empty mandatory disclaimers on at least one channel.",
+      "if": {
+        "required": ["compliance_and_risk_guardrails"],
+        "properties": {
+          "compliance_and_risk_guardrails": {
+            "required": ["regulatory_regime"],
+            "properties": {
+              "regulatory_regime": {
+                "enum": [
+                  "SEC_RIA_MARKETING_RULE_206_4_1",
+                  "FINRA_2210_SUPERVISED"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "compliance_and_risk_guardrails": {
+            "properties": {
+              "mandatory_disclaimer": {
+                "properties": {
+                  "required": {
+                    "const": true
+                  },
+                  "text": {
+                    "minLength": 25
+                  },
+                  "apply_to_channels": {
+                    "minItems": 1
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "If bullet lists are banned, allowed_bullet_glyphs must be empty.",
+      "if": {
+        "required": ["stylometric_targets"],
+        "properties": {
+          "stylometric_targets": {
+            "required": ["paragraph_and_whitespace"],
+            "properties": {
+              "paragraph_and_whitespace": {
+                "required": ["bullet_list_policy"],
+                "properties": {
+                  "bullet_list_policy": {
+                    "const": "NEVER"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "stylometric_targets": {
+            "properties": {
+              "paragraph_and_whitespace": {
+                "properties": {
+                  "allowed_bullet_glyphs": {
+                    "maxItems": 0
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "Zero-retention audio policy forces raw_audio_retention_days = 0.",
+      "if": {
+        "required": ["privacy_and_data_governance"],
+        "properties": {
+          "privacy_and_data_governance": {
+            "required": ["audio_biometric_retention_policy"],
+            "properties": {
+              "audio_biometric_retention_policy": {
+                "const": "ZERO_RETENTION_PURGE_IMMEDIATELY_POST_ASR"
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "compliance_and_risk_guardrails": {
+            "properties": {
+              "data_retention_and_residency": {
+                "properties": {
+                  "raw_audio_retention_days": {
+                    "const": 0
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "24-hour ephemeral audio policy caps raw_audio_retention_days at 1.",
+      "if": {
+        "required": ["privacy_and_data_governance"],
+        "properties": {
+          "privacy_and_data_governance": {
+            "required": ["audio_biometric_retention_policy"],
+            "properties": {
+              "audio_biometric_retention_policy": {
+                "const": "ENCRYPTED_EPHEMERAL_24H_TTL"
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "compliance_and_risk_guardrails": {
+            "properties": {
+              "data_retention_and_residency": {
+                "properties": {
+                  "raw_audio_retention_days": {
+                    "maximum": 1
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "Any third-party LLM inference path requires the deterministic pre-inference PII scrubber ON.",
+      "if": {
+        "required": ["privacy_and_data_governance"],
+        "properties": {
+          "privacy_and_data_governance": {
+            "required": ["llm_inference_privacy_mode"],
+            "properties": {
+              "llm_inference_privacy_mode": {
+                "enum": [
+                  "ZERO_DATA_RETENTION_ENTERPRISE_API",
+                  "PSEUDONYMIZED_PAYLOAD_ONLY"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "privacy_and_data_governance": {
+            "properties": {
+              "pre_inference_pii_scrubber": {
+                "properties": {
+                  "enabled": {
+                    "const": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "Non-isolated third-party LLM inference modes require explicit THIRD_PARTY_LLM consent in consent_scope.",
+      "if": {
+        "required": ["privacy_and_data_governance"],
+        "properties": {
+          "privacy_and_data_governance": {
+            "required": ["llm_inference_privacy_mode"],
+            "properties": {
+              "llm_inference_privacy_mode": {
+                "enum": [
+                  "ZERO_DATA_RETENTION_ENTERPRISE_API",
+                  "PSEUDONYMIZED_PAYLOAD_ONLY"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "async_voice_ingestion_profile": {
+            "properties": {
+              "consent_and_provenance": {
+                "properties": {
+                  "consent_scope": {
+                    "contains": {
+                      "const": "THIRD_PARTY_LLM"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "Regulated & high-assurance regimes require human_review_gate.enabled = true and forbid NON_REGULATED in applicable_jurisdictions.",
+      "if": {
+        "required": ["compliance_and_risk_guardrails"],
+        "properties": {
+          "compliance_and_risk_guardrails": {
+            "required": ["regulatory_regime"],
+            "properties": {
+              "regulatory_regime": {
+                "enum": [
+                  "SEC_RIA_MARKETING_RULE_206_4_1",
+                  "FINRA_2210_SUPERVISED",
+                  "HIPAA_COVERED_ENTITY",
+                  "ABA_LEGAL_ADVERTISING_RULE_7",
+                  "PUBLIC_SECTOR_HIGH_ASSURANCE"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "compliance_and_risk_guardrails": {
+            "properties": {
+              "human_review_gate": {
+                "properties": {
+                  "enabled": {
+                    "const": true
+                  }
+                }
+              },
+              "applicable_jurisdictions": {
+                "not": {
+                  "contains": {
+                    "const": "NON_REGULATED"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "If AI disclosure is required, label_text (>=5 chars) and at least one channel are mandatory.",
+      "if": {
+        "required": ["compliance_and_risk_guardrails"],
+        "properties": {
+          "compliance_and_risk_guardrails": {
+            "required": ["ai_disclosure_policy"],
+            "properties": {
+              "ai_disclosure_policy": {
+                "required": ["required"],
+                "properties": {
+                  "required": {
+                    "const": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "compliance_and_risk_guardrails": {
+            "properties": {
+              "ai_disclosure_policy": {
+                "properties": {
+                  "label_text": {
+                    "minLength": 5
+                  },
+                  "applies_to": {
+                    "minItems": 1
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "HMAC_DETERMINISTIC_COREFERENCE_TOKENS requires hmac_coreference_pseudonymization = true.",
+      "if": {
+        "required": ["privacy_and_data_governance"],
+        "properties": {
+          "privacy_and_data_governance": {
+            "required": ["pre_inference_pii_scrubber"],
+            "properties": {
+              "pre_inference_pii_scrubber": {
+                "required": ["token_replacement_format"],
+                "properties": {
+                  "token_replacement_format": {
+                    "const": "HMAC_DETERMINISTIC_COREFERENCE_TOKENS"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "privacy_and_data_governance": {
+            "properties": {
+              "security_and_adversarial_hardening": {
+                "properties": {
+                  "hmac_coreference_pseudonymization": {
+                    "const": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "Public-sector high-assurance profiles require prompt_injection_firewall_mode = QUARANTINE_AND_HALT.",
+      "if": {
+        "required": ["compliance_and_risk_guardrails"],
+        "properties": {
+          "compliance_and_risk_guardrails": {
+            "required": ["regulatory_regime"],
+            "properties": {
+              "regulatory_regime": {
+                "const": "PUBLIC_SECTOR_HIGH_ASSURANCE"
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "privacy_and_data_governance": {
+            "properties": {
+              "security_and_adversarial_hardening": {
+                "properties": {
+                  "prompt_injection_firewall_mode": {
+                    "const": "QUARANTINE_AND_HALT"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

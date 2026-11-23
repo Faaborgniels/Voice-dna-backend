@@ -1,0 +1,11 @@
+Yesterday I reviewed the financials of a $7M B2B agency whose founder swore they had a lead problem.
+
+Cash felt tight before every bi-weekly payroll. Yet their accrual P&L showed a healthy 16% net profit on paper.
+
+When we opened the unit economics, sales volume wasn't the issue at all:
+1. Delivery gross margin had quietly slipped from 58% down to 37% over three quarters due to unbilled scope creep.
+2. Their three largest enterprise accounts were paying on Net-60 terms while engineer and strategist payroll cleared every 14 days.
+
+Growth eats cash long before it prints it. Adding another $1.5M of Net-60 retainers onto underpriced delivery doesn't relieve a cash crunch—it deepens the working-capital trough.
+
+Before spending another dollar on Q4 outbound, audit contribution margin and days sales outstanding by client cohort first.

@@ -1,0 +1,565 @@
+{
+  "schema_version": "3.0.0",
+  "profile_metadata": {
+    "client_id": "cli_ria_chen_03",
+    "pseudonym_token": "EXEC_RIA03C",
+    "full_name": "David Chen, CFP, CPA",
+    "role_title": "Founder & Lead Wealth Advisor",
+    "company_name": "Harborline Fiduciary Wealth (Fee-Only RIA)",
+    "niche_vertical": "INDEPENDENT_RIA",
+    "locale": "en-US",
+    "timezone_iana": "America/Los_Angeles",
+    "cadence": {
+      "posts_per_week_target": 4,
+      "preferred_publish_window_local": "07:30-08:15"
+    },
+    "created_at_utc": "2026-10-18T17:00:00Z",
+    "updated_at_utc": "2026-11-06T16:10:00Z",
+    "calibration_confidence": 0.97,
+    "source_corpus_stats": {
+      "spoken_words_analyzed": 4680,
+      "written_words_analyzed": 2300,
+      "voice_note_clips_analyzed": 12,
+      "written_samples_analyzed": 6,
+      "stylometric_drift_score": 0.06
+    }
+  },
+  "privacy_and_data_governance": {
+    "audio_biometric_retention_policy": "ZERO_RETENTION_PURGE_IMMEDIATELY_POST_ASR",
+    "llm_inference_privacy_mode": "ZERO_DATA_RETENTION_ENTERPRISE_API",
+    "pre_inference_pii_scrubber": {
+      "enabled": true,
+      "redact_entity_categories": [
+        "CLIENT_PROPER_NAMES",
+        "COMPANY_COUNTERPARTIES",
+        "EXACT_BANK_AND_CAP_TABLE_FIGURES",
+        "EMAILS_AND_PHONE_NUMBERS",
+        "GEOGRAPHIC_STREET_ADDRESSES",
+        "UNANNOUNCED_DEAL_TICKERS"
+      ],
+      "token_replacement_format": "HMAC_DETERMINISTIC_COREFERENCE_TOKENS",
+      "custom_confidential_codenames": [
+        "Pacific Redwood Trust",
+        "Cascade Photonics Exit"
+      ]
+    },
+    "voice_cloning_prohibition": {
+      "allow_synthetic_tts_training": false,
+      "strip_acoustic_biometric_headers": true
+    },
+    "security_and_adversarial_hardening": {
+      "strip_zero_width_and_steganography": true,
+      "block_unicode_homoglyph_spoofing": true,
+      "prompt_injection_firewall_mode": "QUARANTINE_AND_HALT",
+      "hmac_coreference_pseudonymization": true
+    }
+  },
+  "async_voice_ingestion_profile": {
+    "preferred_capture_channels": [
+      "APPLE_VOICE_MEMO",
+      "SIGNAL_DISAPPEARING_VOICE_NOTE",
+      "TALLY_ASYNC_AUDIO",
+      "WHATSAPP_VOICE_NOTE"
+    ],
+    "consent_and_provenance": {
+      "capture_source_platform": "VOICE_MEMO_IOS",
+      "consent_captured_at_utc": "2026-10-18T16:40:00Z",
+      "consent_reference_id": "msa_harborline_cco_2026_10_18_sec206",
+      "consent_scope": [
+        "DRAFTING",
+        "PUBLISHING",
+        "ANALYTICS",
+        "THIRD_PARTY_LLM"
+      ],
+      "data_owner_email_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "speaking_behavior": {
+      "typical_clip_duration_sec": 240,
+      "spoken_wpm_baseline": 136,
+      "spoken_wpm_percentiles": {
+        "p10": 118,
+        "p50": 136,
+        "p90": 156
+      },
+      "acoustic_environment_profile": "QUIET_DESK_CONDENSER",
+      "noise_environment": {
+        "typical_background": "QUIET_OFFICE",
+        "asr_confidence_penalty": 0.03
+      },
+      "pause_segmentation_threshold_ms": 1250,
+      "ramble_to_signal_curve": "STORY_TANGENT_THEN_SHARP_LESSON",
+      "warm_up_lead_in_sec": 15
+    },
+    "oral_to_print_bridge": {
+      "strip_spoken_disfluencies": [
+        "uh",
+        "um",
+        "recording this between client reviews",
+        "let me think how to phrase this compliantly",
+        "you know",
+        "sort of"
+      ],
+      "preserve_signature_oral_markers": [
+        "Sequence and calendar dates matter more than cleverness",
+        "Here is why timing matters",
+        "Under IRS rules",
+        "Before a binding LOI hits the table"
+      ],
+      "breath_chain_segmentation_rule": "David speaks thoughtfully and qualifies tax nuances carefully. Separate the statutory rule into its own clean 2-sentence explanation, then place planning steps into a calm bulleted timeline.",
+      "vocal_stress_to_typography_rule": "Use clean sentence breaks and exact calendar windows ('12 to 24 months prior', 'within 30 days of grant') to carry weight—zero exclamation marks or hype formatting.",
+      "incomplete_thought_resolution_policy": "INSERT_BRACKETED_QUERY_FOR_AUTHOR",
+      "multi_note_stitching_policy": "CHRONOLOGICAL_CONCATENATION",
+      "target_compression_ratio": 0.4
+    },
+    "in_audio_meta_directives": {
+      "off_record_redaction_triggers": [
+        "off the record",
+        "never mention client specifics",
+        "don't mention",
+        "scrub the deal size",
+        "compliance note strip this"
+      ],
+      "self_correction_triggers": [
+        "sorry let me restate that",
+        "scratch that",
+        "actually under section"
+      ],
+      "editor_instruction_triggers": [
+        "note for editor",
+        "make sure compliance disclaimer is on this",
+        "save this for the monthly letter"
+      ],
+      "quarantine_policy": "REDACT_SPAN_AND_LOG_FOR_EDITOR"
+    },
+    "asr_phonetic_correction_map": [
+      {
+        "misheard_variants": [
+          "q s b s",
+          "usps stock",
+          "qs bs"
+        ],
+        "canonical_term": "QSBS (Section 1202)",
+        "match_strategy": "EXACT_WORD_BOUNDARY_CASE_INSENSITIVE",
+        "domain_context": "Qualified Small Business Stock federal tax exclusion"
+      },
+      {
+        "misheard_variants": [
+          "83 be election",
+          "83 b election"
+        ],
+        "canonical_term": "83(b) election",
+        "match_strategy": "EXACT_WORD_BOUNDARY_CASE_INSENSITIVE",
+        "domain_context": "IRC Section 83(b) early equity tax election"
+      },
+      {
+        "misheard_variants": [
+          "binding alloy",
+          "l o i"
+        ],
+        "canonical_term": "LOI",
+        "match_strategy": "EXACT_WORD_BOUNDARY_CASE_INSENSITIVE",
+        "domain_context": "Letter of Intent in M&A sale"
+      },
+      {
+        "misheard_variants": [
+          "r s u",
+          "are ess yous"
+        ],
+        "canonical_term": "RSUs",
+        "match_strategy": "EXACT_WORD_BOUNDARY_CASE_INSENSITIVE",
+        "domain_context": "Restricted Stock Units"
+      },
+      {
+        "misheard_variants": [
+          "a m t",
+          "amt tax"
+        ],
+        "canonical_term": "AMT",
+        "match_strategy": "EXACT_WORD_BOUNDARY_CASE_INSENSITIVE",
+        "domain_context": "Alternative Minimum Tax on ISOs"
+      }
+    ]
+  },
+  "executive_persona": {
+    "archetype_label": "Plain-English Pre-Exit & Equity Fiduciary Educator",
+    "voice_essence_summary": "Dual CFP/CPA fee-only fiduciary advising founders before $8M–$40M business exits and senior tech executives holding concentrated RSU/ISO equity. Calm, precise, strictly educational, translates complex tax code timing into crystal-clear kitchen-table consequences without ever promising investment returns.",
+    "status_posture": "QUIET_FIDUCIARY",
+    "tone_coordinates": {
+      "directness_vs_diplomacy": 7,
+      "analytical_vs_narrative": 8,
+      "contrarian_edge": 7,
+      "warmth_and_wit": 6,
+      "technical_rigor": 9
+    },
+    "pov_pronoun_policy": {
+      "default_person": "MIXED_I_FOR_OPINION_WE_FOR_FIRM",
+      "reader_address": "DIRECT_SECOND_PERSON_YOU",
+      "notes": "Maintain warm, measured fiduciary authority; always frame scenarios as general tax/estate mechanics rather than personalized investment advice."
+    }
+  },
+  "stylometric_targets": {
+    "word_count_method": "UNICODE_WORD_BOUNDARIES",
+    "readability_target": {
+      "flesch_kincaid_grade_min": 8.0,
+      "flesch_kincaid_grade_max": 14.5,
+      "avg_silent_reading_wpm": 225,
+      "preferred_narrative_density": "BALANCED"
+    },
+    "sentence_length": {
+      "target_mean_words": 16.0,
+      "allowed_mean_tolerance": 4.5,
+      "min_burstiness_cv": 0.3,
+      "short_punch_sentence_ratio": {
+        "min_ratio": 0.1,
+        "max_ratio": 0.42
+      },
+      "hard_max_words_single_sentence": 36
+    },
+    "paragraph_and_whitespace": {
+      "max_sentences_per_paragraph": 3,
+      "single_sentence_paragraph_frequency": "SPARING_EMPHASIS_ONLY",
+      "max_consecutive_single_line_paragraphs": 2,
+      "bullet_list_policy": "MAX_ONE_SHORT_LIST_3_TO_5_ITEMS",
+      "allowed_bullet_glyphs": [
+        "•",
+        "1."
+      ]
+    },
+    "orthography_and_punctuation": {
+      "em_dash_max_per_post": 3,
+      "semicolon_policy": "RARE_ANALYTICAL_CONTRAST",
+      "parenthetical_aside_policy": "DRY_COMMENTARY_MAX_ONE",
+      "exclamation_mark_max_per_post": 0,
+      "ellipsis_policy": "BANNED",
+      "emoji_max_per_post": 0,
+      "allowed_emojis": [],
+      "hashtag_max_per_post": 0,
+      "link_policy": "NO_LINKS_IN_BODY",
+      "hashtag_policy": "NONE",
+      "number_rendering_rule": "Use rounded hypothetical scenarios ($2M+, $150,000, 12 to 24 months) and exact statutory section numbers (Section 1202, 83(b))."
+    },
+    "syntactic_anti_ai_constraints": {
+      "max_antithesis_reversals_per_post": 1,
+      "forbid_participial_tail_clauses": true,
+      "forbid_symmetrical_adjective_triplets": true,
+      "forbid_hypophora_question_stubs": true
+    }
+  },
+  "lexical_fingerprint": {
+    "signature_idioms_and_phrases": [
+      "Sequence and calendar dates matter more than cleverness",
+      "What you keep net of taxes, not the headline deal number",
+      "Concentration builds wealth; tax-aware diversification lets you keep it",
+      "Before a binding LOI hits the table"
+    ],
+    "spoken_transition_bridges": [
+      "Here is why timing matters:",
+      "Under IRS rules,",
+      "In practical terms:",
+      "Where families get surprised is here:"
+    ],
+    "domain_power_lexicon": [
+      "QSBS (Section 1202)",
+      "anticipatory assignment of income",
+      "RSU vesting schedule",
+      "AMT crossover",
+      "83(b) election",
+      "donor-advised fund",
+      "cost basis",
+      "concentrated equity",
+      "binding LOI",
+      "fee-only fiduciary"
+    ],
+    "client_hard_banned_terms": [
+      "get rich",
+      "moon",
+      "alpha",
+      "crush the S&P",
+      "tax hack",
+      "secret strategy",
+      "guaranteed return",
+      "safe bet",
+      "no-risk"
+    ],
+    "lexical_substitutions": [
+      {
+        "banned_term": "beat the market",
+        "preferred_replacement": "coordinate tax, liquidity, and risk exposure",
+        "reason": "SEC Marketing Rule compliance and fiduciary investment philosophy."
+      },
+      {
+        "banned_term": "loophole",
+        "preferred_replacement": "statutory tax provision",
+        "reason": "Serious CPA/CFP fiduciaries never call established IRC sections 'tax loopholes'."
+      },
+      {
+        "banned_term": "rich people",
+        "preferred_replacement": "founders and executives facing liquidity events",
+        "reason": "Maintain dignified, specific client description."
+      },
+      {
+        "banned_term": "free money",
+        "preferred_replacement": "tax-deferred compounding",
+        "reason": "Avoid sensationalist retail finfluencer language."
+      }
+    ]
+  },
+  "rhetorical_architecture": {
+    "preferred_hook_archetypes": [
+      "UNCOMFORTABLE_BOARDROOM_QUESTION",
+      "SHARP_REGULATORY_OR_MARKET_SHIFT",
+      "HARD_EARNED_OPERATOR_MISTAKE"
+    ],
+    "argument_progression_pattern": "Open with a common timing mistake around an exit, equity vest, or tax deadline -> Explain the statutory IRS/structural reason why waiting closes doors -> Outline 2-3 proactive planning windows -> End with calm preparation guidance + mandatory educational disclosure.",
+    "evidence_anchoring_rule": "Anchor examples in concrete statutory timelines (e.g., 5-year QSBS holding period, 30-day 83(b) window, pre-LOI vs. post-LOI) without implying guaranteed outcomes.",
+    "closing_cadence_rule": "Close on forward calendar awareness followed cleanly by the required educational disclosure sentence."
+  },
+  "worldview_and_authority": {
+    "verified_credibility_anchors": [
+      "Licensed CPA and CERTIFIED FINANCIAL PLANNER professional advising founders and tech executives for 12 years",
+      "100% fee-only fiduciary RIA—zero commissions, insurance products, or proprietary fund kickbacks"
+    ],
+    "core_contrarian_theses": [
+      {
+        "conventional_myth": "Hire your wealth and tax planning team right after you sign the Letter of Intent to sell your company.",
+        "client_conviction": "Waiting until a binding LOI is signed locks you out of the highest-impact pre-exit estate, trust, and charitable gifting structures.",
+        "proof_mechanism": "Under the IRS anticipatory assignment of income doctrine, transferring shares after a deal is substantially certain can trigger immediate tax recognition."
+      },
+      {
+        "conventional_myth": "Holding 70% of your net worth in employer RSUs after vesting is 'staying loyal' or 'waiting for the stock to bounce back'.",
+        "client_conviction": "Holding vested RSUs is mathematically identical to taking a cash bonus today and spending 100% of it buying your employer's stock.",
+        "proof_mechanism": "RSUs are taxed as ordinary W-2 income on the day they vest—there is zero long-term capital gains benefit to holding newly vested shares."
+      }
+    ],
+    "sacred_cows_and_nuances": [
+      "Always emphasize collaborating alongside a client's M&A attorney and corporate CPA rather than replacing their legal counsel."
+    ]
+  },
+  "icp_and_conversion_mechanics": {
+    "primary_buyer_persona": {
+      "titles": [
+        "Founder",
+        "Majority Owner",
+        "VP of Engineering",
+        "SVP Product"
+      ],
+      "company_or_wealth_stage": "Founders 12–36 months from an $8M–$40M exit, or tech leaders holding $2M–$15M in company equity",
+      "acute_pains": [
+        "Realizing too late that poor pre-exit entity or trust timing could cost $1.5M+ in avoidable federal and state taxes",
+        "Having 65%+ of family net worth tied up in a single employer ticker plus career income",
+        "Getting pitched opaque high-fee insurance products by bank brokers instead of objective tax-coordinated math"
+      ],
+      "sophistication_level": "SOPHISTICATED_HNW_DELEGATOR"
+    },
+    "cta_philosophy": {
+      "educational_to_offer_ratio": "90:10",
+      "allowed_soft_ctas": [
+        "Planning a business exit in the next 12–36 months? Download our Pre-LOI Tax & Liquidity Readiness Timeline in my profile.",
+        "If an exit or major RSU vest is on your 2027–2028 radar, our Fiduciary Readiness Checklist is linked in my profile."
+      ],
+      "banned_cta_patterns": [
+        "DM me 'TAXES' to save millions!",
+        "Guaranteed tax elimination—book now!",
+        "Act fast before markets crash!"
+      ]
+    }
+  },
+  "compliance_and_risk_guardrails": {
+    "regulatory_regime": "SEC_RIA_MARKETING_RULE_206_4_1",
+    "applicable_jurisdictions": [
+      "US_SEC",
+      "CCPA_CPRA"
+    ],
+    "data_retention_and_residency": {
+      "raw_audio_retention_days": 0,
+      "transcript_retention_days": 1825,
+      "deletion_sla_hours": 72,
+      "data_residency_region": "US",
+      "processor_id": "zdr_us_sec_books_records_archive_01",
+      "dpa_url": "https://voiceauthority.engine/legal/dpa-sec-ria-v2"
+    },
+    "epistemic_fact_grounding_policy": {
+      "unverified_spoken_numbers_rule": "WRAP_IN_VERIFY_BRACKETS_FOR_AUTHOR",
+      "allow_extrapolated_case_studies": false,
+      "require_citation_marker_on_industry_stats": true
+    },
+    "anonymization_policy": {
+      "redact_client_names": true,
+      "redact_exact_deal_terms": true,
+      "pii_scrub_classes": [
+        "PERSON_NAME",
+        "ORG_NAME",
+        "EMAIL",
+        "PHONE",
+        "ACCOUNT_NUMBER",
+        "DEAL_SIZE_EXACT",
+        "LOCATION_SPECIFIC"
+      ],
+      "instructions": "Frame all examples strictly as composite or hypothetical educational scenarios ('Consider a founder selling a $12M C-corp...'). Never reference identifiable client outcomes or investment returns."
+    },
+    "prohibited_claims_and_promises": [
+      "guaranteed",
+      "risk-free",
+      "outperform",
+      "beat the market",
+      "tax-free guaranteed",
+      "assured return",
+      "eliminate all taxes"
+    ],
+    "ai_disclosure_policy": {
+      "required": false,
+      "label_text": "",
+      "applies_to": []
+    },
+    "human_review_gate": {
+      "enabled": true,
+      "reviewer_role": "COMPLIANCE_OFFICER",
+      "required_before_channels": [
+        "LINKEDIN_POST",
+        "NEWSLETTER_ISSUE",
+        "VIDEO_SCRIPT_60S"
+      ]
+    },
+    "mandatory_disclaimer": {
+      "required": true,
+      "text": "Educational commentary only; not individualized investment, tax, or legal advice.",
+      "apply_to_channels": [
+        "LINKEDIN_POST",
+        "NEWSLETTER_ISSUE"
+      ]
+    }
+  },
+  "channel_profiles": {
+    "LINKEDIN_POST": {
+      "min_words": 125,
+      "max_words": 245,
+      "max_chars": 2800,
+      "hook_max_words": 24,
+      "mobile_see_more_char_cutoff": 190,
+      "include_first_comment": true
+    },
+    "NEWSLETTER_ISSUE": {
+      "min_words": 750,
+      "max_words": 1200,
+      "subject_line_max_chars": 48,
+      "preview_text_max_chars": 90,
+      "section_headers_allowed": true,
+      "plaintext_alt_required": true
+    },
+    "VIDEO_SCRIPT_60S": {
+      "min_words": 120,
+      "max_words": 165,
+      "spoken_wpm_target": 140,
+      "visual_cue_brackets_allowed": true,
+      "captions_required": true
+    }
+  },
+  "few_shot_calibration": [
+    {
+      "topic_context": "Why founders waiting until a signed LOI lose major pre-exit tax and estate planning flexibility.",
+      "pii_sanitized_verified": true,
+      "redaction_applied": true,
+      "raw_async_voice_transcript_snippet": "Uh recording this between client reviews—one thing that breaks my heart in pre-exit work is getting an urgent phone call where a founder says 'David we signed our binding alloy yesterday, how do we reduce taxes before closing?' Sequence and calendar dates matter more than cleverness. Once a binding L O I is signed and deal terms are substantially locked, IRS rules around anticipatory assignment of income shut down most charitable remainder trusts, family trust share gifts at pre-deal valuations, or fixing broken Q S B S paperwork without triggering immediate tax recognition. Founders who keep the highest share of net proceeds coordinate their CPA, M&A counsel, and fiduciary planner 12 to 24 months before going to market—auditing C-corp structure, completing family transfers before formal bids, and modeling post-exit cash flow. Make sure compliance disclaimer is on this.",
+      "generic_ai_slop_version": "Selling your business? Unlock massive tax loopholes and skyrocket your wealth with our seamless secret strategies! Don't leave free money on the table! 🚀 #Wealth #Exit",
+      "authentic_client_gold_version": "The costliest pre-exit phone call starts with: \"We signed our LOI—how do we reduce taxes before closing?\"\n\nSequence and calendar dates matter more than cleverness. Once a binding LOI is signed and deal terms are substantially locked, IRS rules around anticipatory assignment of income narrow your options dramatically.\n\nCharitable remainder trusts, gifting shares to family trusts at pre-deal valuations, or fixing broken QSBS (Section 1202) documentation often become ineffective or trigger immediate tax recognition.\n\nFounders who keep the highest share of net proceeds coordinate their CPA, M&A counsel, and fiduciary planner 12 to 24 months before going to market:\n• Auditing C-corp vs. S-corp structure and 5-year QSBS clocks early\n• Completing family or charitable share transfers prior to formal buyer bids\n• Modeling post-exit cash flow needs before negotiating earnout terms\n\nBring your planning team to the table before the investment banker launches the process. Educational commentary only; not individualized investment, tax, or legal advice.",
+      "observed_gold_metrics": {
+        "mean_sentence_words": 15.5,
+        "burstiness_cv": 0.44,
+        "compression_ratio_achieved": 0.96
+      },
+      "forensic_transformation_notes": "Repaired ASR 'binding alloy' -> 'binding LOI' and 'Q S B S' -> 'QSBS (Section 1202)', stripped spoken compliance meta-instruction while appending the exact SEC Rule 206(4)-1 disclaimer, and preserved his signature line ('Sequence and calendar dates matter more than cleverness')."
+    },
+    {
+      "topic_context": "Helping senior tech leaders reframe newly vested RSUs.",
+      "pii_sanitized_verified": true,
+      "redaction_applied": false,
+      "raw_async_voice_transcript_snippet": "Um quick thought on R S U vesting schedules—so many senior engineering VPs sit on $2M plus of vested employer shares because selling feels disloyal or they think they should wait a year for long-term capital gains. Here is why timing matters on vesting day: unlike incentive stock options, R S U shares are taxed as ordinary W-2 cash income the exact morning they vest, and your cost basis resets to that day's market price. Holding newly vested shares gives you zero tax discount on the grant itself, while tying both your paycheck and your retirement balance sheet to a single ticker. Ask yourself one clarifying question on every quarterly vest date: if the company wired you $150,000 in after-tax cash today, would you log into your brokerage account and spend 100% of it buying more company shares? Make sure compliance disclaimer is on this.",
+      "generic_ai_slop_version": "Holding company stock is risky! Beat the market effortlessly with our guaranteed diversification playbook!",
+      "authentic_client_gold_version": "Many VPs sit on $2M+ of vested employer RSUs because selling feels disloyal—or they assume waiting cuts the grant tax.\n\nHere is why timing matters on vesting day.\n\nUnlike incentive stock options, RSUs are taxed as ordinary W-2 income the moment shares vest. Your cost basis resets to that morning's market price. Holding newly vested shares ties both your career income and family balance sheet to a single stock without lowering the vest-day tax bill.\n\nAsk one clarifying question on every quarterly vest date: \"If the company wired me $150,000 in after-tax cash today, would I log into my brokerage account and spend 100% of it buying more company shares?\"\n\nIf the answer is no, automating a structured sell-to-diversify calendar rule removes emotion from the decision. Educational commentary only; not individualized investment, tax, or legal advice.",
+      "observed_gold_metrics": {
+        "mean_sentence_words": 17.5,
+        "burstiness_cv": 0.495,
+        "compression_ratio_achieved": 0.93
+      },
+      "forensic_transformation_notes": "Repaired 'R S U' -> 'RSUs', kept his exact $150,000 cash-wire mental model and 'Here is why timing matters' bridge, met the 125w+ LinkedIn floor with high burstiness, and appended the mandatory SEC educational disclosure."
+    }
+  ],
+  "learned_revision_ledger": [
+    {
+      "rule_id": "rev_20261029_8f12b0",
+      "created_at_utc": "2026-10-29T18:05:00Z",
+      "lifecycle_status": "ACTIVE",
+      "severity": "HARD_BLOCK",
+      "scope": "ALL_CHANNELS",
+      "raw_client_feedback": "Never use the word 'loophole'—it sounds scammy to serious CPAs and compliance officers.",
+      "compiled_agent_directive": "Never refer to IRC provisions (like Section 1202 QSBS or DAFs) as 'loopholes' or 'hacks'; always say 'statutory tax provisions' or 'planning windows'.",
+      "bad_before_example": "use this legal tax loophole",
+      "approved_after_example": "apply this statutory tax provision",
+      "redaction_applied": false
+    }
+  ],
+  "version_history": [
+    {
+      "version": "2.1.0",
+      "changed_at_utc": "2026-11-05T16:45:00Z",
+      "change_summary": "Initial SEC Rule 206(4)-1 fiduciary Voice DNA calibration from 12 iOS Voice Memos and 6 client letters.",
+      "breaking_change": false,
+      "prev_version_hash": "GENESIS",
+      "entry_sha256": "b65061f8eb455dc1aa88dbb36b3a386a61ae9209db60d83f7e43a231e74410df"
+    },
+    {
+      "version": "2.3.0",
+      "changed_at_utc": "2026-11-06T16:10:00Z",
+      "change_summary": "Upgraded to Master v2.3.0 with CCO human_review_gate, 5-year SEC Books & Records transcript retention (1825d) + 0-day biometric audio purge, PII scrubber, and syntactic anti-AI constraints.",
+      "breaking_change": true,
+      "prev_version_hash": "b65061f8eb455dc1aa88dbb36b3a386a61ae9209db60d83f7e43a231e74410df",
+      "entry_sha256": "7ac9683f83b1b9d818e117fec55f509b358ecd47047e851a54df5a22f8458c36"
+    },
+    {
+      "version": "3.0.0",
+      "changed_at_utc": "2026-11-07T00:00:00Z",
+      "change_summary": "Upgraded to v3.0.0 High-Assurance Forensic spec: adversarial sanitizer, HMAC coreference pseudonymization, Burrows Delta idiolect attribution, SHA-256 chained provenance.",
+      "breaking_change": true,
+      "prev_version_hash": "7ac9683f83b1b9d818e117fec55f509b358ecd47047e851a54df5a22f8458c36",
+      "entry_sha256": "0ce872845bac43e60578ac59849666cd4a4500fdcca1fe7e313ce04f0777dd0b"
+    }
+  ],
+  "forensic_idiolect_signature": {
+    "calibration_method": "BURROWS_COSINE_DELTA_V1",
+    "function_word_centroid_per_1k": {
+      "the": 37.162,
+      "of": 13.514,
+      "and": 20.27,
+      "to": 27.027,
+      "in": 3.378,
+      "a": 13.514,
+      "that": 3.378,
+      "for": 0.0,
+      "is": 10.135,
+      "with": 3.378,
+      "on": 10.135,
+      "by": 0.0,
+      "from": 3.378,
+      "not": 6.757,
+      "but": 0.0,
+      "this": 0.0,
+      "are": 6.757,
+      "as": 3.378,
+      "be": 0.0,
+      "at": 3.378,
+      "or": 20.27,
+      "if": 6.757,
+      "when": 0.0,
+      "we": 6.757,
+      "you": 0.0,
+      "i": 3.378
+    },
+    "mattr_window_40_bounds": {
+      "min_mattr": 0.846,
+      "max_mattr": 0.99
+    },
+    "max_nominalization_density_pct": 5.91,
+    "max_passive_voice_ratio": 0.287,
+    "min_authorship_attribution_score": 88.0
+  }
+}

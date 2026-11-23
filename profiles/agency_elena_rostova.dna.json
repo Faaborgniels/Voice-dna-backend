@@ -1,0 +1,549 @@
+{
+  "schema_version": "3.0.0",
+  "profile_metadata": {
+    "client_id": "cli_agency_rostova_02",
+    "pseudonym_token": "EXEC_REV02B",
+    "full_name": "Elena Rostova",
+    "role_title": "Founder & CEO",
+    "company_name": "Northstar RevOps & Demand",
+    "niche_vertical": "B2B_AGENCY_FOUNDER",
+    "locale": "en-US",
+    "timezone_iana": "America/Chicago",
+    "cadence": {
+      "posts_per_week_target": 5,
+      "preferred_publish_window_local": "08:00-09:00"
+    },
+    "created_at_utc": "2026-10-15T11:00:00Z",
+    "updated_at_utc": "2026-11-06T16:05:00Z",
+    "calibration_confidence": 0.94,
+    "source_corpus_stats": {
+      "spoken_words_analyzed": 3640,
+      "written_words_analyzed": 1420,
+      "voice_note_clips_analyzed": 9,
+      "written_samples_analyzed": 4,
+      "stylometric_drift_score": 0.11
+    }
+  },
+  "privacy_and_data_governance": {
+    "audio_biometric_retention_policy": "ENCRYPTED_EPHEMERAL_24H_TTL",
+    "llm_inference_privacy_mode": "ZERO_DATA_RETENTION_ENTERPRISE_API",
+    "pre_inference_pii_scrubber": {
+      "enabled": true,
+      "redact_entity_categories": [
+        "CLIENT_PROPER_NAMES",
+        "COMPANY_COUNTERPARTIES",
+        "EMAILS_AND_PHONE_NUMBERS",
+        "UNANNOUNCED_DEAL_TICKERS"
+      ],
+      "token_replacement_format": "HMAC_DETERMINISTIC_COREFERENCE_TOKENS",
+      "custom_confidential_codenames": [
+        "Project Skylark",
+        "Helios CloudHR"
+      ]
+    },
+    "voice_cloning_prohibition": {
+      "allow_synthetic_tts_training": false,
+      "strip_acoustic_biometric_headers": true
+    },
+    "security_and_adversarial_hardening": {
+      "strip_zero_width_and_steganography": true,
+      "block_unicode_homoglyph_spoofing": true,
+      "prompt_injection_firewall_mode": "QUARANTINE_AND_HALT",
+      "hmac_coreference_pseudonymization": true
+    }
+  },
+  "async_voice_ingestion_profile": {
+    "preferred_capture_channels": [
+      "WHATSAPP_VOICE_NOTE",
+      "LOOM_AUDIO_ONLY",
+      "TALLY_ASYNC_AUDIO",
+      "WEB_MIC"
+    ],
+    "consent_and_provenance": {
+      "capture_source_platform": "LOOM",
+      "consent_captured_at_utc": "2026-10-15T10:30:00Z",
+      "consent_reference_id": "msa_rostova_2026_10_15_tally_signed",
+      "consent_scope": [
+        "DRAFTING",
+        "PUBLISHING",
+        "ANALYTICS",
+        "THIRD_PARTY_LLM"
+      ],
+      "data_owner_email_hash": "4b227777d4dd1fc61c6f884f48641d02b4d121d3fd328cb08b5531fcacdabf8a"
+    },
+    "speaking_behavior": {
+      "typical_clip_duration_sec": 165,
+      "spoken_wpm_baseline": 168,
+      "spoken_wpm_percentiles": {
+        "p10": 146,
+        "p50": 168,
+        "p90": 192
+      },
+      "acoustic_environment_profile": "QUIET_DESK_CONDENSER",
+      "noise_environment": {
+        "typical_background": "QUIET_OFFICE",
+        "asr_confidence_penalty": 0.04
+      },
+      "pause_segmentation_threshold_ms": 850,
+      "ramble_to_signal_curve": "FRONT_LOADED_DIRECT",
+      "warm_up_lead_in_sec": 10
+    },
+    "oral_to_print_bridge": {
+      "strip_spoken_disfluencies": [
+        "uh",
+        "um",
+        "like honestly",
+        "so super quick voice note",
+        "just hopped off a zoom",
+        "you guys know",
+        "kind of thing"
+      ],
+      "preserve_signature_oral_markers": [
+        "When we pulled the CRM logs",
+        "Paid media amplifies conversion; it never invents positioning",
+        "Look at the handoff",
+        "Here is what actually happened"
+      ],
+      "breath_chain_segmentation_rule": "Elena speaks fast at ~168 WPM with rapid tactical clauses. Break her spoken 'and then we checked X and saw Y' chains into crisp bulleted audit findings followed by a punchy 1-sentence operator rule.",
+      "vocal_stress_to_typography_rule": "Translate spoken contrast stress into clean parallel bullet pairs or a sharp opening statement—never use emojis or exclamation marks.",
+      "incomplete_thought_resolution_policy": "PRUNE_UNFINISHED_TANGENT_CLEANLY",
+      "multi_note_stitching_policy": "SYNTHESIZE_BY_ARGUMENT_ARC",
+      "target_compression_ratio": 0.44
+    },
+    "in_audio_meta_directives": {
+      "off_record_redaction_triggers": [
+        "off the record",
+        "don't say their company name",
+        "don't mention",
+        "keep the client anonymous"
+      ],
+      "self_correction_triggers": [
+        "wait actually",
+        "scratch that",
+        "sorry I meant"
+      ],
+      "editor_instruction_triggers": [
+        "note for editor",
+        "drop the hubspot checklist link",
+        "use this for the newsletter"
+      ],
+      "quarantine_policy": "REDACT_SPAN_AND_LOG_FOR_EDITOR"
+    },
+    "asr_phonetic_correction_map": [
+      {
+        "misheard_variants": [
+          "red ops",
+          "rev ops"
+        ],
+        "canonical_term": "RevOps",
+        "match_strategy": "EXACT_WORD_BOUNDARY_CASE_INSENSITIVE",
+        "domain_context": "Revenue Operations CRM pipeline architecture"
+      },
+      {
+        "misheard_variants": [
+          "sequels",
+          "s q l s"
+        ],
+        "canonical_term": "SQLs",
+        "match_strategy": "CONTEXTUAL_DOMAIN_DISAMBIGUATION",
+        "domain_context": "Sales Qualified Leads pipeline funnel conversion HubSpot CRM"
+      },
+      {
+        "misheard_variants": [
+          "m q l s",
+          "em cue els"
+        ],
+        "canonical_term": "MQLs",
+        "match_strategy": "EXACT_WORD_BOUNDARY_CASE_INSENSITIVE",
+        "domain_context": "Marketing Qualified Leads"
+      },
+      {
+        "misheard_variants": [
+          "cat payback",
+          "c a c payback"
+        ],
+        "canonical_term": "CAC payback",
+        "match_strategy": "EXACT_WORD_BOUNDARY_CASE_INSENSITIVE",
+        "domain_context": "Customer Acquisition Cost payback period"
+      },
+      {
+        "misheard_variants": [
+          "hub spot"
+        ],
+        "canonical_term": "HubSpot",
+        "match_strategy": "PHONETIC_STEM_REPLACEMENT",
+        "domain_context": "HubSpot CRM platform"
+      }
+    ]
+  },
+  "executive_persona": {
+    "archetype_label": "Candid Operator & B2B Pipeline Mechanic",
+    "voice_essence_summary": "Pragmatic 18-person B2B agency founder who shares blunt field notes from live client CRM audits and sales pipelines. Allergic to marketing buzzwords, generous with tactical breakdowns, and unafraid to tell prospects when NOT to hire an agency.",
+    "status_posture": "PEER_OPERATOR",
+    "tone_coordinates": {
+      "directness_vs_diplomacy": 8,
+      "analytical_vs_narrative": 7,
+      "contrarian_edge": 9,
+      "warmth_and_wit": 7,
+      "technical_rigor": 7
+    },
+    "pov_pronoun_policy": {
+      "default_person": "MIXED_I_FOR_OPINION_WE_FOR_FIRM",
+      "reader_address": "DIRECT_SECOND_PERSON_YOU",
+      "notes": "Use 'we' when describing audits and client implementations; use 'I' for founder lessons and hiring/sales call stories."
+    }
+  },
+  "stylometric_targets": {
+    "word_count_method": "UNICODE_WORD_BOUNDARIES",
+    "readability_target": {
+      "flesch_kincaid_grade_min": 6.0,
+      "flesch_kincaid_grade_max": 12.8,
+      "avg_silent_reading_wpm": 245,
+      "preferred_narrative_density": "SKIMMABLE"
+    },
+    "sentence_length": {
+      "target_mean_words": 14.0,
+      "allowed_mean_tolerance": 4.5,
+      "min_burstiness_cv": 0.32,
+      "short_punch_sentence_ratio": {
+        "min_ratio": 0.14,
+        "max_ratio": 0.48
+      },
+      "hard_max_words_single_sentence": 32
+    },
+    "paragraph_and_whitespace": {
+      "max_sentences_per_paragraph": 3,
+      "single_sentence_paragraph_frequency": "MODERATE_CADENCE",
+      "max_consecutive_single_line_paragraphs": 2,
+      "bullet_list_policy": "MAX_ONE_SHORT_LIST_3_TO_5_ITEMS",
+      "allowed_bullet_glyphs": [
+        "•",
+        "1.",
+        "→"
+      ]
+    },
+    "orthography_and_punctuation": {
+      "em_dash_max_per_post": 3,
+      "semicolon_policy": "RARE_ANALYTICAL_CONTRAST",
+      "parenthetical_aside_policy": "DRY_COMMENTARY_MAX_ONE",
+      "exclamation_mark_max_per_post": 0,
+      "ellipsis_policy": "BANNED",
+      "emoji_max_per_post": 0,
+      "allowed_emojis": [],
+      "hashtag_max_per_post": 0,
+      "link_policy": "ONE_LINK_IN_FIRST_COMMENT",
+      "hashtag_policy": "NONE",
+      "number_rendering_rule": "Use compact digits with operational units ($14k/month, 19 hours, 60 days, sub-5-minute)."
+    },
+    "syntactic_anti_ai_constraints": {
+      "max_antithesis_reversals_per_post": 1,
+      "forbid_participial_tail_clauses": true,
+      "forbid_symmetrical_adjective_triplets": true,
+      "forbid_hypophora_question_stubs": true
+    }
+  },
+  "lexical_fingerprint": {
+    "signature_idioms_and_phrases": [
+      "Paid media amplifies conversion; it never invents positioning",
+      "Pipeline dies in the handoff, not the ad account",
+      "Show me what happens in HubSpot 10 minutes after a demo request",
+      "Expensive traffic pointed at a confused page"
+    ],
+    "spoken_transition_bridges": [
+      "Here is what actually happened:",
+      "When we pulled the CRM logs,",
+      "The uncomfortable fix:",
+      "Look at the handoff:"
+    ],
+    "domain_power_lexicon": [
+      "speed-to-lead",
+      "SQL-to-close",
+      "pipeline velocity",
+      "lifecycle stage",
+      "CAC payback",
+      "attribution",
+      "routing logic",
+      "demo show rate",
+      "ICP fit",
+      "win-loss"
+    ],
+    "client_hard_banned_terms": [
+      "growth hacking",
+      "viral",
+      "magic bullet",
+      "secret funnel",
+      "automagically",
+      "crush your quota",
+      "boss",
+      "guru"
+    ],
+    "lexical_substitutions": [
+      {
+        "banned_term": "leads",
+        "preferred_replacement": "qualified demo requests",
+        "reason": "B2B VPs of Sales hate low-intent eBook 'leads'; specify qualified pipeline."
+      },
+      {
+        "banned_term": "brand awareness",
+        "preferred_replacement": "pipeline from in-market buyers",
+        "reason": "Agency buyers buy revenue outcomes, not vague impressions."
+      },
+      {
+        "banned_term": "omni-channel",
+        "preferred_replacement": "coordinated LinkedIn and outbound",
+        "reason": "Keep tactical descriptions concrete rather than agency brochure jargon."
+      },
+      {
+        "banned_term": "optimize",
+        "preferred_replacement": "tighten",
+        "reason": "Prefer crisp tactile verbs over overused marketing verbs."
+      }
+    ]
+  },
+  "rhetorical_architecture": {
+    "preferred_hook_archetypes": [
+      "ANONYMIZED_CLIENT_AUTOPSY",
+      "CONTRARIAN_DIAGNOSIS",
+      "HARD_EARNED_OPERATOR_MISTAKE"
+    ],
+    "argument_progression_pattern": "Start with a real sales call or HubSpot audit discovery -> Expose the hidden RevOps/conversion bottleneck -> Give the exact 3-part operational fix -> Close with a sharp filter on readiness.",
+    "evidence_anchoring_rule": "Include specific funnel metrics (response minutes, demo-to-SQL %, ad spend bands, or ACV stages) in every piece.",
+    "closing_cadence_rule": "Close with a crisp diagnostic takeaway that lets serious VP/CEO buyers self-qualify."
+  },
+  "worldview_and_authority": {
+    "verified_credibility_anchors": [
+      "Audited and rebuilt HubSpot/Salesforce revenue pipelines for 45+ B2B SaaS and service companies ($4M–$40M ARR)",
+      "Led an 18-person RevOps and B2B demand team over the past 6 years"
+    ],
+    "core_contrarian_theses": [
+      {
+        "conventional_myth": "When B2B pipeline slows down, you need to double paid ad spend or swap ad agencies.",
+        "client_conviction": "Half of 'broken ad accounts' actually suffer from 19-hour SDR response times and vague homepage positioning.",
+        "proof_mechanism": "Cutting demo response delay from 18 hours to under 6 minutes routinely doubles SQL conversion without touching ad spend."
+      },
+      {
+        "conventional_myth": "Complex multi-touch attribution software solves alignment between sales and marketing.",
+        "client_conviction": "Before $25M ARR, $40k attribution tools mostly referee internal politics instead of creating pipeline.",
+        "proof_mechanism": "Self-reported 'How did you hear about us?' paired with clean HubSpot stage hygiene captures 90% of actionable signal."
+      }
+    ],
+    "sacred_cows_and_nuances": [
+      "Never blame junior SDRs for bad pipeline—broken routing and weak messaging come from leadership systems, not 23-year-old reps."
+    ]
+  },
+  "icp_and_conversion_mechanics": {
+    "primary_buyer_persona": {
+      "titles": [
+        "CEO",
+        "Founder",
+        "VP of Revenue",
+        "CRO"
+      ],
+      "company_or_wealth_stage": "$4M–$35M B2B SaaS and tech-enabled service companies",
+      "acute_pains": [
+        "Spending $25k/month on LinkedIn and Google ads while board pipeline targets slip",
+        "Marketing celebrating MQL volume while AEs complain every calendar invite is unqualified",
+        "Messy HubSpot lifecycle data making quarterly revenue forecasts a coin flip"
+      ],
+      "sophistication_level": "HIGH_OPERATOR_NO_BASICS"
+    },
+    "cta_philosophy": {
+      "educational_to_offer_ratio": "80:20",
+      "allowed_soft_ctas": [
+        "Running $15k+/mo in B2B spend and suspect pipeline is leaking in the CRM handoff? Grab our 24-Point HubSpot Leak Audit in my profile.",
+        "Shared our internal 15-minute Speed-to-Lead & Routing Checklist in the first comment if your RevOps team wants to steal it."
+      ],
+      "banned_cta_patterns": [
+        "Comment 'FUNNEL' and I'll DM you!",
+        "Smash follow for daily growth hacks!",
+        "Agree? Thoughts?"
+      ]
+    }
+  },
+  "compliance_and_risk_guardrails": {
+    "regulatory_regime": "STANDARD_B2B",
+    "applicable_jurisdictions": [
+      "US_FTC",
+      "CCPA_CPRA"
+    ],
+    "data_retention_and_residency": {
+      "raw_audio_retention_days": 1,
+      "transcript_retention_days": 45,
+      "deletion_sla_hours": 48,
+      "data_residency_region": "US",
+      "processor_id": "zdr_us_central_enterprise_02",
+      "dpa_url": "https://voiceauthority.engine/legal/dpa-zdr-v2"
+    },
+    "epistemic_fact_grounding_policy": {
+      "unverified_spoken_numbers_rule": "WRAP_IN_VERIFY_BRACKETS_FOR_AUTHOR",
+      "allow_extrapolated_case_studies": false,
+      "require_citation_marker_on_industry_stats": true
+    },
+    "anonymization_policy": {
+      "redact_client_names": true,
+      "redact_exact_deal_terms": true,
+      "pii_scrub_classes": [
+        "PERSON_NAME",
+        "ORG_NAME",
+        "EMAIL",
+        "PHONE"
+      ],
+      "instructions": "Never name unaudited clients without written case-study sign-off; describe by ARR band and broad category (e.g., 'a $12M Series A HR-tech team')."
+    },
+    "prohibited_claims_and_promises": [
+      "guaranteed pipeline",
+      "overnight ROI"
+    ],
+    "ai_disclosure_policy": {
+      "required": false,
+      "label_text": "",
+      "applies_to": []
+    },
+    "human_review_gate": {
+      "enabled": true,
+      "reviewer_role": "AUTHOR",
+      "required_before_channels": [
+        "LINKEDIN_POST",
+        "NEWSLETTER_ISSUE"
+      ]
+    },
+    "mandatory_disclaimer": {
+      "required": false,
+      "text": "",
+      "apply_to_channels": []
+    }
+  },
+  "channel_profiles": {
+    "LINKEDIN_POST": {
+      "min_words": 115,
+      "max_words": 225,
+      "max_chars": 2600,
+      "hook_max_words": 20,
+      "mobile_see_more_char_cutoff": 180,
+      "include_first_comment": true
+    },
+    "NEWSLETTER_ISSUE": {
+      "min_words": 700,
+      "max_words": 1100,
+      "subject_line_max_chars": 45,
+      "preview_text_max_chars": 85,
+      "section_headers_allowed": true,
+      "plaintext_alt_required": true
+    },
+    "VIDEO_SCRIPT_60S": {
+      "min_words": 125,
+      "max_words": 165,
+      "spoken_wpm_target": 150,
+      "visual_cue_brackets_allowed": true,
+      "captions_required": true
+    }
+  },
+  "few_shot_calibration": [
+    {
+      "topic_context": "Turning down a prospective retainer when homepage positioning and CRM speed-to-lead are broken.",
+      "pii_sanitized_verified": true,
+      "redaction_applied": true,
+      "raw_async_voice_transcript_snippet": "So super quick voice note just hopped off a zoom where we actually said no to a $14k a month paid demand retainer on Tuesday. Good software, 40+ mid-market customers, strong net retention, keep the client anonymous obviously. When we pulled the CRM logs in hub spot during discovery, two bottlenecks jumped right out at us: first it took four clicks on their homepage just to tell whether the platform was built for CFOs or IT directors, and second, high-intent demo requests submitted after 2 PM waited an average of 19 hours before an AE even sent a calendar link. Paid media amplifies conversion; it never invents positioning. Pouring $25k a month of LinkedIn traffic into a slow handoff and a vague homepage just buys expensive bounce rates. Tighten message clarity and sub-5-minute demo routing first, then turn on the paid faucet.",
+      "generic_ai_slop_version": "In today's hyper-competitive B2B landscape, omni-channel ads aren't about traffic—they're about unlocking seamless alignment! Let's delve into why conversion optimization is pivotal! 🚀",
+      "authentic_client_gold_version": "We turned down a $14k/month paid demand retainer on Tuesday.\n\nNot because the software was weak. They already had 40+ mid-market customers and strong net retention.\n\nWhen we pulled the CRM logs during discovery, two bottlenecks stood out immediately:\n• It took four clicks on their homepage just to tell whether the platform was built for CFOs or IT directors.\n• High-intent demo requests submitted after 2 PM waited an average of 19 hours before an AE sent a calendar link.\n\nPaid media amplifies conversion; it never invents positioning. Pouring $25k/month of LinkedIn traffic into a slow handoff and a vague homepage just buys expensive bounce rates.\n\nTighten message clarity and sub-5-minute demo routing first, then turn on the paid faucet.",
+      "observed_gold_metrics": {
+        "mean_sentence_words": 13.22,
+        "burstiness_cv": 0.37,
+        "compression_ratio_achieved": 0.8
+      },
+      "forensic_transformation_notes": "Stripped 'super quick voice note just hopped off a zoom', honored 'keep the client anonymous', repaired 'hub spot' -> 'HubSpot', kept exact spoken anchors ('When we pulled the CRM logs', 'Paid media amplifies conversion; it never invents positioning'), and broke the two audit findings into crisp bullets."
+    },
+    {
+      "topic_context": "Why compensating B2B marketers on raw MQL volume pits marketing against sales.",
+      "pii_sanitized_verified": true,
+      "redaction_applied": false,
+      "raw_async_voice_transcript_snippet": "Uh one rant on M Q L S versus sequels in B2B SaaS—like honestly if you compensate a smart B2B marketing team on raw MQL volume, say 600 M Q L S a quarter, they will hit that number every single time. How do they do it? By gating basic PDF checklists and pushing low-intent webinar attendees straight into the AE routing queue in HubSpot. Here is what actually happened at a $15M ARR software team we audited last month: within 60 days, AEs stopped trusting Slack alerts, speed-to-lead collapsed to 14 hours even on real buyers, and both VPs spent board meetings arguing over attribution. Pipeline dies in the handoff, not the ad account. Switch the shared scoreboard to qualified demo requests held with ICP accounts, and half your alignment meetings disappear overnight.",
+      "generic_ai_slop_version": "Sales and marketing alignment is a game-changer! Stop chasing vanity leads and foster synergy across your revenue realm.",
+      "authentic_client_gold_version": "The fastest way to break a good B2B marketing team is compensating them on raw MQL volume.\n\nGive a smart marketer a 600-MQL quarterly target. They will hit it every time.\n\nHere is what actually happened inside a $15M ARR software team we audited in HubSpot last month:\n• Marketing gated basic PDF checklists and pushed every webinar registrant straight into the AE routing queue.\n• Within 60 days, AEs stopped trusting calendar alerts and speed-to-lead collapsed to 14 hours on real in-market buyers.\n• Both VPs spent board meetings debating attribution instead of closing revenue.\n\nPipeline dies in the handoff, not the ad account.\n\nSwitch the shared scoreboard to qualified demo requests held with ICP accounts, and half your alignment meetings disappear overnight.",
+      "observed_gold_metrics": {
+        "mean_sentence_words": 13.78,
+        "burstiness_cv": 0.346,
+        "compression_ratio_achieved": 0.88
+      },
+      "forensic_transformation_notes": "Repaired ASR 'M Q L S' -> 'MQL' and contextual 'sequels' -> 'SQLs', replaced banned generic word 'leads' with 'qualified demo requests', preserved spoken anchors ('Here is what actually happened', 'Pipeline dies in the handoff, not the ad account'), and balanced short punchlines with a 3-bullet audit breakdown."
+    }
+  ],
+  "learned_revision_ledger": [
+    {
+      "rule_id": "rev_20261030_7c21e9",
+      "created_at_utc": "2026-10-30T14:15:00Z",
+      "lifecycle_status": "ACTIVE",
+      "severity": "HARD_BLOCK",
+      "scope": "ALL_CHANNELS",
+      "raw_client_feedback": "Never blame junior SDRs—broken routing is always a leadership and RevOps system problem.",
+      "compiled_agent_directive": "Attribute slow follow-up or bad pipeline routing strictly to leadership systems and CRM rules, never to junior SDR effort.",
+      "bad_before_example": "lazy SDRs are ignoring inbound",
+      "approved_after_example": "broken HubSpot routing rules bury high-intent demo requests",
+      "redaction_applied": false
+    }
+  ],
+  "version_history": [
+    {
+      "version": "2.1.0",
+      "changed_at_utc": "2026-11-05T16:40:00Z",
+      "change_summary": "Initial async voice-note calibration from 9 Loom/WhatsApp clips and 4 LinkedIn teardowns.",
+      "breaking_change": false,
+      "prev_version_hash": "GENESIS",
+      "entry_sha256": "c5a3bfee6c4c4938d3726bccae61bb71775298c881d24108343c8f4a7339afe2"
+    },
+    {
+      "version": "2.3.0",
+      "changed_at_utc": "2026-11-06T16:05:00Z",
+      "change_summary": "Upgraded to Master v2.3.0 with contextual ASR disambiguation ('sequels' -> 'SQLs'), 24h ephemeral audio retention, pre-inference PII scrubber, syntactic anti-AI constraints, and readability bounds.",
+      "breaking_change": true,
+      "prev_version_hash": "c5a3bfee6c4c4938d3726bccae61bb71775298c881d24108343c8f4a7339afe2",
+      "entry_sha256": "3e196c93a900b7174aec752fcfeaebab32614e06d2c712e09c7c1ac37ff43336"
+    },
+    {
+      "version": "3.0.0",
+      "changed_at_utc": "2026-11-07T00:00:00Z",
+      "change_summary": "Upgraded to v3.0.0 High-Assurance Forensic spec: adversarial sanitizer, HMAC coreference pseudonymization, Burrows Delta idiolect attribution, SHA-256 chained provenance.",
+      "breaking_change": true,
+      "prev_version_hash": "3e196c93a900b7174aec752fcfeaebab32614e06d2c712e09c7c1ac37ff43336",
+      "entry_sha256": "d6a093c7bbcd86d6dfc4685082ff203ee76c3560efb6c03dd9c0fcc17d060bbc"
+    }
+  ],
+  "forensic_idiolect_signature": {
+    "calibration_method": "BURROWS_COSINE_DELTA_V1",
+    "function_word_centroid_per_1k": {
+      "the": 36.885,
+      "of": 12.295,
+      "and": 24.59,
+      "to": 20.492,
+      "in": 12.295,
+      "a": 32.787,
+      "that": 0.0,
+      "for": 4.098,
+      "is": 8.197,
+      "with": 4.098,
+      "on": 20.492,
+      "by": 0.0,
+      "from": 0.0,
+      "not": 8.197,
+      "but": 0.0,
+      "this": 0.0,
+      "are": 0.0,
+      "as": 0.0,
+      "be": 0.0,
+      "at": 0.0,
+      "or": 4.098,
+      "if": 0.0,
+      "when": 4.098,
+      "we": 12.295,
+      "you": 0.0,
+      "i": 0.0
+    },
+    "mattr_window_40_bounds": {
+      "min_mattr": 0.843,
+      "max_mattr": 0.99
+    },
+    "max_nominalization_density_pct": 4.58,
+    "max_passive_voice_ratio": 0.197,
+    "min_authorship_attribution_score": 88.0
+  }
+}
